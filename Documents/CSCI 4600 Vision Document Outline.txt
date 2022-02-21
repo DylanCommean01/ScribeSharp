@@ -1,0 +1,153 @@
+﻿Vision Document
+Project Phase 1
+________________
+
+
+By Rashaad Washington and Dylan Commean
+________________
+
+
+I - Introduction
+1.1 - Purpose: 
+The purpose is to provide clarity and integration of note taking within a classroom setting. It focuses on the need for such an app and describes why the need exists. The details of which are described in the following document.
+
+
+1.2 - Scope: 
+The vision document applies to our application which will be developed by our team. The scope of the project is to provide a solution to integrate active participation and active learning. The software will combine important and useful tools catered for different educational subjects. Additionally, it will allow educators to streamline student problems with clarity, while providing visuals for demonstration.
+
+
+II - Positioning
+2.1 - Business Opportunity:
+        When students take notes, it becomes difficult to copy the examples that a teacher provides into their notes that work and receive an instantaneous solution to their given contexts. There is currently no easy way to produce this outcome without the tried and true method of copying and pasting. Current technologies such as Word, Google Docs, and/or other applications do not integrate examples into an actual testable way. Computers are used by everyone and they make the perfect application platform for note taking.
+
+
+2.2 - Problem Statement:
+        The problem of a person not having an integrated way to compile aspects of their notes to retrieve relevant information. This affects students and teachers alike as they do not have a simple way to produce the intended outcomes in a streamlined manner. For example, a teacher copying and pasting their notes into a compiler from a powerpoint slide which can produce unintended outcomes. These problems cause wasted time and resources that could be used to further education. A successful solution would be an application in which students, teachers, or other users can take notes on a simple interface and have their examples perfectly integrated. This integration would provide solutions to subjects that the user inputs e.g. computer science code compilation, mathematical calculations on a calculator. 
+
+
+III - Stakeholder and User Descriptions
+3.2 - Stakeholder Summary:
+
+
+Name
+	Description
+	Responsibilities
+	Dylan Commean
+	Stakeholder and Creator
+	Project Manager, Project Design and Programming, and Software Architect.
+	Rashaad Washington
+	Stakeholder and Creator
+	Project Manager, Project Design and Programming, and Software Architect
+	Both
+	Summary of abilities between both creators.
+	Graphical User Interfaces (GUI), Database Management, User to host networking, application Programming interfaces, C# programming language, Object-Oriented Programming (OOP), JavaScript, CSS, HTML5 
+
+
+	
+
+3.3 - User Summary: 
+
+
+Name
+	Description
+	Responsibilities
+	Stakeholder
+	Teachers
+	Primary end-user of the system
+	Uses the application to take notes as well as participate in instances of the system. Integrate their lectures onto the student’s portal. Uses external applications to supplement learning
+	Self
+	Students
+	Primary end-user of the system
+	Uses the application to take notes as well as participate in instances of the system
+	Self
+	Others
+	Secondary end-user of the system
+	Uses the application to take notes.
+	Self
+	
+
+IV - Product Overview 
+4.1 - Product Perspective:
+  
+
+4.2 - Summary of Capabilities:
+        
+User Benefit
+	Supporting Features
+	Enhanced progress of classroom activities
+	Teacher/student portal, Subject switching, messaging, share tab.
+	Ease of communication
+	Messaging, share tab.
+	Ability to retrieve past notes
+	Save notes, connection to class, share tab
+	Hosting of classroom-wide note sessions
+	Host class, share tab.
+	
+
+4.3 - Assumptions and Dependencies:
+        This product is assuming that the user is literate and can read clearly displayed messages and notes. The default language will be in United States English. This assumes that users who cannot speak and write in English will not be using the system. It is assumed that the Application Programming Interface (API) calls and structure are functioning properly and responding in a timely manner. 
+V - Product Features
+5.1. Select Profile Mode (Login / Register) Mode
+Once application has been opened, users will be prompted with a two-button menu screen that allows user to sign-in when clicked on the first button or to register when clicked on the second button
+        5.1.1. Register
+If the register button is clicked, the user will be directed to a form that will allow the user to register with the following required information: a first name, a last name, an email, a password, a password confirmation, a school name, user status (student / teacher). Once completed, a submit button will send the values of the form to a database. 
+        5.1.2. Login
+If the login button is clicked, the user will be directed to a form that will allow the user to login with the following required information: an email and a password. Once completed, a login button will verify the values with the values in the database and if verified, will direct the user to the home screen of the app. If the values entered can not be verified, the user is prompted to re-enter the required information correctly.
+5.2. Subject
+This feature is a category of educational subjects that should pertain to the notes the student or teacher is taking.
+        i.e. Math, Computer Science, etc.
+5.2.1. External Apps
+This feature will grant the user external applications that would be considered useful and helpful for the selected subject. 
+i.e. Compiler (Java, C#), Calculator
+        
+5.3. Logout
+5.4. Back button (on all screens except the home screen)
+
+
+---Student Mode 
+5.5. Notebook
+A feature that contains a sorted collection of free-notes with the option to filter based on subject and date. Notebook will also allow users to search by file name.
+5.5.1. Free-Note (a note-taking service)
+This feature directs the student to a blank canvas which the user can type notes on. 
+5.5.1.1. Save Notes
+While using Free-Note, the student will have the option to save notes. Once clicked, the default OS file reader will open and the student will then have the option to save a (.txt) file to a specific folder.        
+        5.5.1.2. Subject
+This feature allows the student/teacher to change educational subjects of matter so that other external tools can be selected.
+i.e. Math, Computer Science
+5.6. Connect (to Class)
+This feature allows any student to connect to a teacher’s hosted class. Furthermore, this feature will display the teacher’s uploaded presentation.
+        5.6.1. Message (private and public communication)
+This feature allows the student to directly message other students or teachers so that others will hopefully answer.
+        5.6.2. Share Tab
+This feature presents a blank canvas that students can type in that will have the option to be directly shared with the teacher of that class.
+5.6.3. Free-Note (a note-taking service)
+Implements previous “Free-Note” and all functions, but subject selection is not optional; up to teacher’s discretion.
+
+
+---Teacher Mode
+5.7. Host Class
+        This feature grants the permission of any teacher to host an online remote session where students can connect to via a connect code. Once clicked, the teacher is given a connect code and is also prompted to import a presentation using the following acceptable file extensions: .”ppt”, “.pdf”, “.word”, and “.docx”. The teacher selects a subject that their class will be required to use. Lastly, the teacher will be directed to a screen where he or she can present the imported presentation.
+5.7.1. Free-Note (a note-taking service)
+Implements previous “Free-Note” and all functions, but subject selection is not optional; up to teacher’s discretion.
+
+
+
+
+VI - Constraints
+We intend for the system to have minimal clicks to get to relevant applications, minimal time spent in the interface, usability of both teachers and students, ease of use for both teachers and students, fast connection times (local vs internet provider), and fast obtainable information. This project is contingent upon the creators having the time and resources available to finish. Dylan Commean is not familiar with databases and application programming interfaces (API). The project could potentially be too enormous of a task for two programmers to develop in the time allotted.
+
+
+VII - Other Product Requirements
+The system requirements include a connection to the internet and space on a local device with which data can be stored. The school requirements are that the product should comply with school information technology security standards. This includes standards on the use of sensitive information such as student names, teacher names, and login information to a school portal. The product should comply with school regulations and systems. There are no environmental requirements. There are no performance requirements.
+
+
+Recommended system requirements:
+Processor
+	Single-core 1Ghz or higher
+	Dual-core 2Ghz or higher (Intel i3/i5/i7 or AMD equivalent)
+	RAM
+	N/A
+	4 Gb
+	Internet Connection
+	Broadband wired 
+	Wireless (3G, 4G/LTE)
