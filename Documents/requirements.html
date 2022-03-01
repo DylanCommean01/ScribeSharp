@@ -10,56 +10,65 @@
             <h3>Team members</h3>
             <p>Rashaad Washington and Dylan Commean</p>
             <h3>Purpose</h3>
-            <p>The purpose is to provide clarity and integration of note taking within a classroom setting. It focuses on the need for such an app and describes why the need exists. The details of which are described in the following document</p>
+            <p>To provide clarity and integration of note taking within a classroom setting.</p>
             <h3>Requirements</h3>
             <ol>
                 <li>
-                    <p><strong>Name:</strong> select_profile<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Members should be added to the database. New members contain a variety of information that is used to manage rental accounts.</p>
+                    <p><strong>Name:</strong> select_user_profile<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users should be able to select whether they are logged in. If they would like an account, allow them to register.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> register_account<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Movies addition functionality should be added.</p>
+                    <p><strong>Name:</strong> register_user<br><strong>Type:</strong> functional<br><strong>Summary:</strong> User is prompted to register a profile to the website. Adds that user to the database.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> login_account<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> login_user<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users are prompted to login using their username and password. It checks the database for the valid information and tells the user to login again if the login information is not found.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> previous_state(back)<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> select_subject<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Allows the user to select which subject widget in a list of Math or Computer Science they would like to implement in their notes.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> open_notebook<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> select_application<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Allows the user to select which application widget to use within certain subjects.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> close_notebook<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> logout_button<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Logout the user when the button is pushed.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> freenote<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> previous_state(back)<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Allows the user to go back to the home screen. If at the homescreen, the button disappears.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> save_notes<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> user_notebook<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Displays the user's past collection of notes.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> select_subject<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> user_save_notes<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users can save their notes to the database.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> select_application<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> join_user_to_class<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users can join a note session hosted by a teacher.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> connect<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> direct_message<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users will be able to chat with other users in a room.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> direct_message<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> share_notes<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users can display their notes for other users.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> share_screen<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> free_note<br><strong>Type:</strong> functional<br><strong>Summary:</strong> All users have access to this. Allows the user to write notes. Functionality for the subject_widget is unavailable.</p>
                 </li>
                 <li>
-                    <p><strong>Name:</strong> host_class<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Certain movies may be removed from the movie list if necessary.</p>
+                    <p><strong>Name:</strong> host_class<br><strong>Type:</strong> functional<br><strong>Summary:</strong> Users can host a session of notes for others to join. The user can import their own notes.</p>
+                </li>
+                <li>
+                    <p><strong>Name:</strong> internet_connection<br><strong>Type:</strong> constraint<br><strong>Summary:</strong> Users should have a connection to the internet.</p>
+                </li>
+                <li>
+                    <p><strong>Name:</strong> reliability<br><strong>Type:</strong> constraint<br><strong>Summary:</strong> Functionality should be online at all times and rate of failure should be minimal.</p>
                 </li>
                 <li>
                     <p><strong>Name:</strong> platform_os<br><strong>Type:</strong> constraint<br><strong>Summary:</strong> The target platform operating system is Windows 10.</p>
                 </li>
                 <li>
                     <p><strong>Name:</strong> platform_resolution<br><strong>Type:</strong> constraint<br><strong>Summary:</strong> Must work on 4K monitors.</p>
+                </li>
+                <li>
+                    <p><strong>Name:</strong> login_info_secure<br><strong>Type:</strong> risk<br><strong>Summary:</strong> User information shall be stored and read in a secure fashion.</p>
                 </li>
             </ol>
         </div>
