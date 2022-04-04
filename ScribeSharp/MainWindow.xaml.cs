@@ -22,7 +22,94 @@ namespace ScribeSharp
     {
         public MainWindow()
         {
+
             InitializeComponent();
+            /*LogIn login;
+            NotePad notePad;
+            Classroom classroom;
+
+            if (!login.isVerified())
+            {
+                User user = new User(login);
+            }
+
+            switch (user.TypeOf())
+            {
+                case student:
+                    notePad = new NotePad(student);
+                    break;
+                case teacher:
+                    notePad = new NotePad(teacher);
+                    classroom = new NotePad(teacher);
+
+                    break;
+                default: //Something happens
+                    break;
+            }*/
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            // SaveNotes();
+        }
+
+        private void Menu_Save_Click(object sender, EventArgs e)
+        {
+            // SaveNotes();
+        }
+
+        private void Menu_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Menu_About_Click(object sender, RoutedEventArgs e)
+        {
+            // ScribeSharp.AboutWindow = "Created By Dylan Commean and Rashaad Washington";
+        }
+
+        class NotePad
+        {
+            private List<string> notePad = new List<string>();
+
+            public string Notes { get; set; }
+
+            public override string ToString()
+            {
+                return base.ToString();
+            }
+
+        }
+
+        class LogIn
+        {
+            private string LoginEmail;
+            private string LoginPassword;
+
+            public LogIn()
+            {
+
+            }
+        }
+
+        class Classroom
+        {
+            private List<User> students = new List<User>();
+        }
+
+        class User
+        {
+            private enum Users { Student, Teacher, Anonymous }
+
+            public User(LogIn login)
+            {
+                if () { 
+                    
+                }
+            }
         }
     }
 }
+
+
+
