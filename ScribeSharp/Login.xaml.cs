@@ -63,7 +63,7 @@ namespace ScribeSharp
                 }
                 else
                 {
-                    Error_Message.Text = "Sorry! Please enter existing email or password.";
+                    Error_Message.Text = "Please enter an existing email or password.";
                 }
                 // con.Close();
             }
@@ -74,6 +74,4 @@ namespace ScribeSharp
             Close();
         }
     }
-}  
-    }
-}
+} 

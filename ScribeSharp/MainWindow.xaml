@@ -12,7 +12,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
-        <TextBox x:Name="Notes" Text="String str = &quot;Hello Student&quot;;&#xD;&#xA;for(int i = 0; i &lt; 10; i++) {&#xD;&#xA;&#x9;str += $&quot; {i,}&quot;;  &#xD;&#xA;}&#xD;&#xA;System.out.printLn(str);" FontSize="12" Margin="0,20,0,0" TextWrapping="WrapWithOverflow"/>
+        <TextBox x:Name="Notes" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Margin="0,20,0,0" TextWrapping="WrapWithOverflow"/>
         <Menu x:Name="menu" Margin="0,0,0,415">
             <MenuItem Header="File" FontSize="12">
                 <MenuItem x:Name="menuItemSave" Header="Save" Click="Menu_Save_Click" FontSize="12"></MenuItem>
