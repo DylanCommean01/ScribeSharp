@@ -28,7 +28,7 @@
                     <MenuItem x:Name="MenuItemCalculator" Header="Calculator" FontSize="12"></MenuItem>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="UserProfile" Click="User_Profile_Click" FontSize="12" Margin="603,0,0,0"/>
+            <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click" FontSize="12" Margin="603,0,0,0"/>
         </Menu>
     </Grid>
 </Window>

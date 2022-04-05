@@ -83,12 +83,22 @@ namespace ScribeSharp
 
         class LogIn
         {
-            private string LoginEmail;
-            private string LoginPassword;
+            private string _loginEmail;
+            private string _loginPassword;
+            private bool _signout;
 
-            public LogIn()
+            public LogIn(string loginEmail, string LoginPassword)
             {
+                _loginEmail = loginEmail;
+                _loginPassword = LoginPassword;
+                _signout = false;
+            }
 
+            public void Signout()
+            {
+                _loginEmail = "";
+                _loginPassword = "";
+                _signout = true;
             }
         }
 
@@ -103,9 +113,7 @@ namespace ScribeSharp
 
             public User(LogIn login)
             {
-                if () { 
-                    
-                }
+                
             }
         }
     }
