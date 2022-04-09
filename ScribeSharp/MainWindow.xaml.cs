@@ -76,7 +76,7 @@ namespace ScribeSharp
 
             public override string ToString()
             {
-                return base.ToString();
+                return Notes;
             }
 
         }

@@ -3,14 +3,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
     Title="Login" Height="350" Width="525">
     <Grid>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label_Login_Heading" Text="Login:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" Name="Label_Login_Heading" Text="Login To ScribeSharp:" VerticalAlignment="Top" FontSize="17" FontStretch="ExtraCondensed"/>
         <TextBlock Height="57" HorizontalAlignment="Left" Margin="20,38,0,0" Name="Label_Heading" VerticalAlignment="Top" FontSize="12" TextWrapping="WrapWithOverflow" FontStyle="Italic" Padding="5" Width="443">  
-                Note: Please login here to view the features of this application. If you are new on this application then <LineBreak /> 
-                please click on   
-                <TextBlock>  
+                Note: Please login here to view the features of this application. If you are new on this application then 
+                please click the link:   
+                <TextBlock Width="55">  
                      <Hyperlink Click="Button_Show_Register" FontSize="14" FontStyle="Normal">Register</Hyperlink>  
-                </TextBlock>   
-                button  
+                </TextBlock>    
             </TextBlock>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,120,0,0" Name="Label_Email" Text="Email" VerticalAlignment="Top" Width="67" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="Label_Passord" Text="Password" VerticalAlignment="Top" Width="77" />

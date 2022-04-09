@@ -20,19 +20,19 @@ namespace ScribeSharp
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class RegistrationPage : Window
+    public partial class Registration : Window
     {
-        public RegistrationPage()
+        public Registration()
         {
             InitializeComponent();
         }
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
             login.Show();
             Close();
         }
-        private void Reset_Click(object sender, RoutedEventArgs e)
+        private void Button_Reset_Click(object sender, RoutedEventArgs e)
         {
             Reset();
         }
@@ -45,11 +45,11 @@ namespace ScribeSharp
             Password_Box.Password = "";
             Password_Box_Confirm.Password = "";
         }
-        private void Cancel_Click(object sender, RoutedEventArgs e)
+        private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
             if (Text_Box_Email.Text.Length == 0)
             {

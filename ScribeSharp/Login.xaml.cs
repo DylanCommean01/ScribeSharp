@@ -27,8 +27,8 @@ namespace ScribeSharp
             InitializeComponent();
         }
         
-        RegistrationPage registration = new RegistrationPage();
-        MainWindow mainWindow = new MainWindow();
+        private Registration registration = new Registration();
+        private MainWindow mainWindow = new MainWindow();
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             if (Text_Box_Email.Text.Length == 0)
