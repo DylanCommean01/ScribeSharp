@@ -22,30 +22,7 @@ namespace ScribeSharp
     {
         public MainWindow()
         {
-
             InitializeComponent();
-            /*LogIn login;
-            NotePad notePad;
-            Classroom classroom;
-
-            if (!login.isVerified())
-            {
-                User user = new User(login);
-            }
-
-            switch (user.TypeOf())
-            {
-                case student:
-                    notePad = new NotePad(student);
-                    break;
-                case teacher:
-                    notePad = new NotePad(teacher);
-                    classroom = new NotePad(teacher);
-
-                    break;
-                default: //Something happens
-                    break;
-            }*/
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -68,7 +45,7 @@ namespace ScribeSharp
             // ScribeSharp.AboutWindow = "Created By Dylan Commean and Rashaad Washington";
         }
 
-        class NotePad
+        public class NotePad
         {
             private List<string> notePad = new List<string>();
 
@@ -81,41 +58,86 @@ namespace ScribeSharp
 
         }
 
-        class LogIn
+        public abstract class User
         {
-            private string _loginEmail;
-            private string _loginPassword;
-            private bool _signout;
+            private NoteBook _noteBook;
 
-            public LogIn(string loginEmail, string LoginPassword)
+            public abstract bool IsStudent();
+            public abstract bool IsTeacher();
+
+            public abstract void StartConversation();
+
+        }
+        public class Teacher : User
+        {
+            private string _classID;
+            private string _lastName;
+
+            public string ClassID { get; set; }
+
+            public string LastName { get; }
+
+            public Teacher(string classID, string lastName)
             {
-                _loginEmail = loginEmail;
-                _loginPassword = LoginPassword;
-                _signout = false;
+                _classID = classID;
+                _lastName = lastName;
             }
 
-            public void Signout()
+            public override bool IsStudent()
             {
-                _loginEmail = "";
-                _loginPassword = "";
-                _signout = true;
+                return false;
+            }
+
+            public override bool IsTeacher()
+            {
+                return true;
+            }
+
+            public override void StartConversation()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ToString()
+            {
+                return $"{ClassID} - {LastName}:";
             }
         }
 
-        class Classroom
+        public class Student : User
         {
-            private List<User> students = new List<User>();
-        }
+            private string _firstName;
+            private string _lastName;
 
-        class User
-        {
-            private enum Users { Student, Teacher, Anonymous }
-
-            public User(LogIn login)
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public Student(string firstName, string lastName)
             {
-                
+                _firstName = firstName;
+                _lastName = lastName;
+            }
+
+            public override bool IsStudent()
+            {
+                return true;
+            }
+
+            public override bool IsTeacher()
+            {
+                return false;
+            }
+
+            public override void StartConversation()
+            {
+                throw new NotImplementedException();
+            }
+            public override string ToString()
+            {
+                return $"{FirstName} - {LastName}:";
             }
         }
+
+
     }
 }
 

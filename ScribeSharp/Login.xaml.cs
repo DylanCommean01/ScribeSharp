@@ -22,13 +22,15 @@ namespace ScribeSharp
     /// </summary>
     public partial class Login : Window
     {
+        private Registration registration;
+        private MainWindow mainWindow;
+        private SqlConnection con;
+
         public Login()
         {
             InitializeComponent();
         }
         
-        private Registration registration = new Registration();
-        private MainWindow mainWindow = new MainWindow();
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             if (Text_Box_Email.Text.Length == 0)
@@ -46,18 +48,19 @@ namespace ScribeSharp
             {
                 string email = Text_Box_Email.Text;
                 string password = Password_Box.Password;
-                SqlConnection con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
+                con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
                 con.Open();
-                SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
+                SqlCommand cmd = new("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
                 cmd.CommandType = CommandType.Text;
-                SqlDataAdapter adapter = new SqlDataAdapter();
+                SqlDataAdapter adapter = new();
                 adapter.SelectCommand = cmd;
-                DataSet dataSet = new DataSet();
+                DataSet dataSet = new();
                 //adapter.Fill(dataSet);
                 if (dataSet.Tables[0].Rows.Count > 0)
                 {
                     string username = dataSet.Tables[0].Rows[0]["FirstName"].ToString() + " " + dataSet.Tables[0].Rows[0]["LastName"].ToString();
-                    mainWindow.menuItemUserProfile.Header = username;//Sending value from one form to another form.  
+                    mainWindow = new MainWindow();
+                    mainWindow.menuItemUserProfile.Header = username; //Sending value from one form to another form.  
                     mainWindow.Show();
                     Close();
                 }
@@ -70,6 +73,7 @@ namespace ScribeSharp
         }
         private void Button_Register_Click(object sender, RoutedEventArgs e)
         {
+            registration = new Registration();
             registration.Show();
             Close();
         }

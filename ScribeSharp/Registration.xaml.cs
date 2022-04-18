@@ -22,13 +22,15 @@ namespace ScribeSharp
     /// </summary>
     public partial class Registration : Window
     {
+        private Login login;
+        private SqlConnection con;
         public Registration()
         {
             InitializeComponent();
         }
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new Login();
+            login = new Login();
             login.Show();
             Close();
         }
@@ -86,9 +88,9 @@ namespace ScribeSharp
                 else
                 {
                     Error_Message.Text = "";
-                    SqlConnection con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
+                    con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("Insert into Registration (FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "')", con);
+                    SqlCommand cmd = new SqlCommand("Insert into Registration(FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "')", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                     con.Close();

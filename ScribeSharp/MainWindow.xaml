@@ -25,7 +25,7 @@
                     <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" Click="Menu_CSharp_Compiler_Click" FontSize="12"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
-                    <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calulator_Click"+ FontSize="12"></MenuItem>
+                    <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calulator_Click" FontSize="12"></MenuItem>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click" FontSize="12" Margin="603,0,0,0"/>
