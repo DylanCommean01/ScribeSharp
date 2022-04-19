@@ -24,6 +24,7 @@ namespace ScribeSharp
     {
         private Login login;
         private SqlConnection con;
+        private MainWindow main;
         public Registration()
         {
             InitializeComponent();
@@ -90,7 +91,7 @@ namespace ScribeSharp
                     Error_Message.Text = "";
                     con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("Insert into Registration(FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "')", con);
+                    SqlCommand cmd = new("Insert into Registration(FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "')", con);
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                     con.Close();
@@ -98,6 +99,12 @@ namespace ScribeSharp
                     Reset();
                 }
             }
+        }
+
+        private void Button_NotePad_Click(object sender, RoutedEventArgs e) 
+        {
+            main = new();
+            main.Show();
         }
     }
 }
