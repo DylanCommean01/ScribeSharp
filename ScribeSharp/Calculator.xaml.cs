@@ -20,150 +20,87 @@ namespace ScribeSharp
     /// </summary>
     public partial class Calculator : Window
     {
+        private string input;
         private string leftOp;
         private string rightOp;
         private double total;
-        private bool left = true;
-        private string op;
+        private char op;
         public Calculator()
         {
             InitializeComponent();
         }
         private void Button_0_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 0;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 0;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "0";
+            ResultTextBox.Text += input;
         }
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 1;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 1;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "1";
+            ResultTextBox.Text += input;
         }
         private void Button_2_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 2;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 2;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "2";
+            ResultTextBox.Text += input;
         }
         private void Button_3_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 3;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 3;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "3";
+            ResultTextBox.Text += input;
         }
         private void Button_4_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 4;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 4;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "4";
+            ResultTextBox.Text += input;
         }
         private void Button_5_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 5;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 5;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "5";
+            ResultTextBox.Text += input;
         }
         private void Button_6_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 6;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 6;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "6";
+            ResultTextBox.Text += input;
         }
         private void Button_7_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 7;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 7;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "7";
+            ResultTextBox.Text += input;
         }
         private void Button_8_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 8;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 8;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "8";
+            ResultTextBox.Text += input;
         }
         private void Button_9_Click(object sender, RoutedEventArgs e)
         {
-            if (left)
-            {
-                leftOp += 9;
-                ResultTextBox.Text = leftOp;
-            }
-            else
-            {
-                rightOp += 9;
-                ResultTextBox.Text = rightOp;
-            }
+            ResultTextBox.Text = "";
+            input += "0";
+            ResultTextBox.Text += input;
+        }
+        private void Dot_Click(object sender, RoutedEventArgs e)
+        {
+            ResultTextBox.Text = "";
+            input += ".";
+            ResultTextBox.Text += input;
+
         }
         private void Answer_click(object sender, RoutedEventArgs e)
         {
             try
             {
-                result();
+                Result();
             }
             catch (Exception exception)
             {
@@ -171,42 +108,48 @@ namespace ScribeSharp
             }
         }
 
-        private void result()
+        private void Reset()
         {
+            ResultTextBox.Text = "";
+            input = "";
+            leftOp = "";
+            rightOp = "";
+        }
+
+        private void Result()
+        {
+            rightOp = input;
             double templeft = Double.Parse(leftOp);
             double tempright = Double.Parse(rightOp);
+            Reset();
             switch (op)
             {
-                case "+":
+                case '+':
                     total = templeft + tempright;
                     break;
-                case "-":
+                case '-':
                     total = templeft - tempright;
                     break;
-                case "*":
+                case '*':
                     total = templeft * tempright;
                     break;
-                case "/":
-                    total = templeft / tempright;
+                case '/':
+                    if (tempright != 0.0)
+                    {
+                        total = templeft / tempright;
+                    }
+                    else
+                    {
+                        ResultTextBox.Text = "Error: Division by zero!";
+                    }
                     break;
                 default:
                     // Error
                     break;
             }
+            ResultTextBox.Text = total.ToString();
 
-            if (left)
-            {
-                ResultTextBox.Text = total.ToString();
-                leftOp = "";
-                rightOp = "";
-                left = !left;
-            }
-            else 
-            {
-                leftOp = total.ToString();
-                ResultTextBox.Text = total.ToString();
-            }
-            
+
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -216,7 +159,7 @@ namespace ScribeSharp
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (ResultTextBox.Text == "Error in Calculation!")
+            if (ResultTextBox.Text.Equals("Error in calculation!"))
             {
                 ResultTextBox.Text = "";
             }
@@ -228,31 +171,32 @@ namespace ScribeSharp
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            ResultTextBox.Text = "";
-            leftOp = "";
-            rightOp = "";
-            left = true;
+            Reset();
         }
 
         private void Button_Divide_Click(object sender, RoutedEventArgs e)
         {
-            op = "/";
-            left = !left;
+            leftOp = input;
+            op = '/';
+            input = "";
         }
         private void Button_Plus_Click(object sender, RoutedEventArgs e)
         {
-            op = "+";
-            left = !left;
+            leftOp = input;
+            op = '+';
+            input = "";
         }
         private void Button_Minus_Click(object sender, RoutedEventArgs e)
         {
-            op = "-";
-            left = !left;
+            leftOp = input;
+            op = '-';
+            input = "";
         }
         private void Button_Multiply_Click(object sender, RoutedEventArgs e)
         {
-            op = "*";
-            left = !left;
+            leftOp = input;
+            op = '*';
+            input = "";
         }
     }
 }
