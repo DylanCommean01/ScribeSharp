@@ -7,15 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ScribeSharpLogo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="ScribeSharpLogo.png" />
   </ItemGroup>
 
 </Project>

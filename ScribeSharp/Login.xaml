@@ -23,7 +23,7 @@
         <Button Content="Login" Height="23" HorizontalAlignment="Center" Margin="0,208,0,0" Name="Button_Login" VerticalAlignment="Top" Width="104" Click="Button_Login_Click" Background="#FF37C316" Grid.Column="1" Grid.ColumnSpan="1" />
         <TextBlock Height="23" HorizontalAlignment="Center" x:Name ="Error_Message" VerticalAlignment="Top" Margin="0,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C" Grid.ColumnSpan="1" Grid.Column="1"  />
         <Button x:Name="buttonBack" Grid.Column="2" Content="Go Back" HorizontalAlignment="Right" Margin="0,3,3,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Click="buttonBack_Click"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="100" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="1" Grid.Column="0" Source="/ScribeSharpLogo.png">
+        <Image HorizontalAlignment="Left" Height="100" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="100" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="1" Grid.Column="0" Source="resources/ScribeSharpLogo.png">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
