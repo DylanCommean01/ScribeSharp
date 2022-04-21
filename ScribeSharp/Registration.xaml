@@ -42,6 +42,6 @@
             <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="335,170,0,0" Name="Reset_Button" VerticalAlignment="Top" Width="70" Click="Button_Reset_Click" />
             <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,200,243,0" Name="Cancel_Button" VerticalAlignment="Top" Width="70" Click="Button_Cancel_Click" Background="#FFFA8065" />
         </Grid>
-        <Image x:Name="appLogo" HorizontalAlignment="Left" Height="70" Margin="110,0,0,0" VerticalAlignment="Top" Width="77" Source="/ScribeSharpLogo.png"/>
+        <Image x:Name="appLogo" HorizontalAlignment="Left" Height="70" Margin="110,0,0,0" VerticalAlignment="Top" Width="77" Source="/resources/ScribeSharpLogo.png"/>
     </Grid>
 </Window>
