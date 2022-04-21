@@ -4,7 +4,7 @@
         Title="Registration" Height="387" Width="528" Background="Black">
     <Grid  Height="350" Width="525" Background="Bisque">
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="10,5,0,0" Name="Label_Heading" Text="Register For ScribeSharp" VerticalAlignment="Top" Width="186"  FontSize="17" FontStretch="ExtraCondensed"/>
-        <Button Margin="389,5,12,322" Content="Already Have a Login?" Cursor="Hand" Click="Login_Click">
+        <Button Margin="389,5,12,322" Content="Already Have a Login?" Cursor="Hand" Click="Button_Login_Click">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <TextBlock TextDecorations="Underline">  
@@ -39,7 +39,7 @@
             <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,107,0,0" Name="Password_Box" VerticalAlignment="Top" Width="222" />
             <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,136,0,0" Name="Password_Box_Confirm" VerticalAlignment="Top" Width="222" />
             <Button Content="Submit" Height="23" HorizontalAlignment="Left" Margin="183,204,0,0" Name="Submit" VerticalAlignment="Top" Width="70" Click="Button_Submit_Click" />
-            <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="259,204,0,0" Name="Reset_Button" VerticalAlignment="Top" Width="70" Click="Button_Reset__Click" />
+            <Button Content="Reset" Height="23" HorizontalAlignment="Left" Margin="259,204,0,0" Name="Reset_Button" VerticalAlignment="Top" Width="70" Click="Button_Reset_Click" />
             <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,204,60,0" Name="Cancel_Button" VerticalAlignment="Top" Width="70" Click="Button_Cancel_Click" />
         </Grid>
     </Grid>

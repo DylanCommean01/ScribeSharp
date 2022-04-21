@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScribeSharp
 {
-    public class NotePad : IImportable, IExportable
+    public class NotePad //: IImportable, IExportable
     {
         private string _note;
         private int _characterCount;

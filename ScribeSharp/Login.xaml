@@ -8,7 +8,7 @@
                 Note: Please login here to view the features of this application. If you are new on this application then 
                 please click the link:   
                 <TextBlock Width="55">  
-                     <Hyperlink Click="Button_Show_Register" FontSize="14" FontStyle="Normal">Register</Hyperlink>  
+                     <Hyperlink Click="Button_Register_Click" FontSize="14" FontStyle="Normal">Register</Hyperlink>  
                 </TextBlock>    
             </TextBlock>
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,120,0,0" Name="Label_Email" Text="Email" VerticalAlignment="Top" Width="67" />
@@ -16,6 +16,7 @@
         <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="Text_Box_Email" VerticalAlignment="Top" Width="247" />
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="Password_Box" VerticalAlignment="Top" Width="247" />
         <Button Content="Login" Height="23" HorizontalAlignment="Left" Margin="118,211,0,0" Name="Button_Login" VerticalAlignment="Top" Width="104" Click="Button_Login_Click" />
+        <Button Content="Go Back" Height="23" HorizontalAlignment="Left" Margin="261,211,0,0" Name="Button_MainWindow" VerticalAlignment="Top" Width="104" Click="Button_MainWindow_Click" />
         <TextBlock Height="23" HorizontalAlignment="Left" x:Name ="Error_Message" VerticalAlignment="Top" Width="247" Margin="118,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C"  />
     </Grid>
 </Window>

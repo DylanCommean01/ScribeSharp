@@ -24,8 +24,7 @@ namespace ScribeSharp
         private User _user;
         private NotePad _notePad;
         private SqlConnection _connection;
-        private ToolsPage _toolsPage;
-        private ClassroomWindow _classroomWindow;
+        private Registration registration = new();
 
         public MainWindow()
         {
@@ -50,6 +49,27 @@ namespace ScribeSharp
         private void Menu_About_Click(object sender, RoutedEventArgs e)
         {
             // ScribeSharp.AboutWindow = "Created By Dylan Commean and Rashaad Washington";
+        }
+
+        private void Menu_Calculator_Click(object sender, RoutedEventArgs e)
+        {
+            Calculator calc = new Calculator();
+            calc.Show();
+        }
+        private void Button_Sign_In_Click(object sender, RoutedEventArgs e) 
+        {
+            Login login = new();
+            login.Show();
+        }
+
+        private void User_Profile_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Notes_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

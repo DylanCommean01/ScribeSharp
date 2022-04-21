@@ -75,7 +75,11 @@ namespace ScribeSharp
         {
             registration = new Registration();
             registration.Show();
-            Close();
+        }
+
+        private void Button_MainWindow_Click(object sender, RoutedEventArgs e) 
+        {
+            this.Hide();
         }
     }
 } 

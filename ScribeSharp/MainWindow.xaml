@@ -8,24 +8,25 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="331*"></ColumnDefinition>
+            <ColumnDefinition Width="69*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
-        <TextBox x:Name="Notes" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Margin="0,20,0,0" TextWrapping="WrapWithOverflow"/>
-        <Menu x:Name="menu" Margin="0,0,0,415">
+        <TextBox x:Name="Notes" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Margin="0,30,0,0" TextWrapping="WrapWithOverflow" TextChanged="Notes_TextChanged" Grid.ColumnSpan="2"/>
+        <Menu x:Name="menu" Margin="0,0,0,404" Grid.ColumnSpan="2">
             <MenuItem Header="File" FontSize="12">
                 <MenuItem x:Name="menuItemSave" Header="Save" Click="Menu_Save_Click" FontSize="12"></MenuItem>
                 <MenuItem x:Name="menuItemAbout" Header="About" Click="Menu_About_Click" FontSize="12"/>
                 <MenuItem x:Name="menuItemExit" Header="Exit" Click="Menu_Exit_Click" FontSize="12"/>
             </MenuItem>
             <MenuItem Header="Sign In" Click="Button_Sign_In_Click" FontSize="12"></MenuItem>
-            <MenuItem Header="Tools" Click="Tools_Click" FontSize="12">
+            <MenuItem Header="Tools" FontSize="12">
                 <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools" FontSize="12">
-                    <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" Click="Menu_CSharp_Compiler_Click" FontSize="12"></MenuItem>
+                    <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" FontSize="12"></MenuItem>
                 </MenuItem>
                 <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
-                    <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calulator_Click" FontSize="12"></MenuItem>
+                    <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click" FontSize="12"></MenuItem>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click" FontSize="12" Margin="603,0,0,0"/>
