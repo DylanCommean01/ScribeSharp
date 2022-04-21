@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ScribeSharp": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "authenticationMode": "Windows"
+    }
+  }
+}
