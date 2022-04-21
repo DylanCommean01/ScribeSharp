@@ -81,5 +81,10 @@ namespace ScribeSharp
         {
             this.Hide();
         }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+            //return to Home screen
+        }
     }
 } 
