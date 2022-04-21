@@ -11,7 +11,7 @@
                      <Hyperlink Click="Button_Register_Click" FontSize="14" FontStyle="Normal">Register</Hyperlink>  
                 </TextBlock>    
             </TextBlock>
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="66,120,0,0" Name="Label_Email" Text="Email" VerticalAlignment="Top" Width="67" />
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,120,0,0" Name="Label_Email" Text="Email" VerticalAlignment="Top" Width="75" />
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="58,168,0,0" Name="Label_Passord" Text="Password" VerticalAlignment="Top" Width="77" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="118,115,0,0" Name="Text_Box_Email" VerticalAlignment="Top" Width="247" />
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="118,168,0,0" Name="Password_Box" VerticalAlignment="Top" Width="247" />
