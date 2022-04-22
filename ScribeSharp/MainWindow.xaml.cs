@@ -71,6 +71,13 @@ namespace ScribeSharp
         {
 
         }
+
+        private void Button_Register_Click(object sender, RoutedEventArgs e)
+        {
+            registration = new Registration();
+            registration.Show();
+            this.Close();
+        }
     }
 }
 

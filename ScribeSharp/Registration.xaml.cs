@@ -24,6 +24,8 @@ namespace ScribeSharp
     {
         private Login login;
         private SqlConnection con;
+        private Registration registration;
+
         public Registration()
         {
             InitializeComponent();
@@ -103,6 +105,26 @@ namespace ScribeSharp
         private void Button_NotePad_Click(object sender, RoutedEventArgs e) 
         {
             this.Hide();
+        }
+
+
+        private void Button_Sign_In_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new();
+            login.Show();
+        }
+
+        private void User_Profile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void Button_Register_Click(object sender, RoutedEventArgs e)
+        {
+            registration = new Registration();
+            registration.Show();
+            this.Close();
         }
     }
 }

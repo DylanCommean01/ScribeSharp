@@ -9,11 +9,15 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="640"/>
-            <ColumnDefinition Width="640"/>
-            <ColumnDefinition Width="640"/>
+            <ColumnDefinition Width="640*"/>
+            <ColumnDefinition Width="640*"/>
+            <ColumnDefinition Width="640*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Width="1920" Height="1080" Grid.Column="0" Grid.ColumnSpan="3">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="20" Height="20*"/>
+            <RowDefinition Height="1060*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="#FFCAE7E7" Offset="0.5" />
@@ -23,24 +27,37 @@
             </Rectangle.Fill>
         </Rectangle>
 
+        <DockPanel  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <Menu DockPanel.Dock="Top" x:Name="menu">
+                <MenuItem Header="File">
+                    <MenuItem Header="Save" x:Name="menuItemSave" Click="Menu_Save_Click"/>
+                    <MenuItem Header="About" x:Name="menuItemAbout" Click="Menu_About_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Exit" x:Name="menuItemExit" Click="Menu_Exit_Click"/>
+                </MenuItem>
+                <MenuItem Header="Profile">
+                    <MenuItem Header="Login" Click="Button_Sign_In_Click"/>
+                    <MenuItem Header="Register" Click="Button_Register_Click"/>
+                    <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click"/>
+                    <MenuItem Header="Logout" />
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools">
+                        <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler"/>
+                    </MenuItem>
+                    <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
+                        <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
+                    </MenuItem>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
 
-        <TextBox x:Name="Notes" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Margin="52,354,52,80" TextWrapping="WrapWithOverflow" TextChanged="Notes_TextChanged"/>
-        <Menu x:Name="menu" Margin="0,0,372,837">
-            <MenuItem Header="File" FontSize="18">
-                <MenuItem x:Name="menuItemSave" Header="Save" Click="Menu_Save_Click" FontSize="16"/>
-                <MenuItem x:Name="menuItemAbout" Header="About" Click="Menu_About_Click" FontSize="16"/>
-                <MenuItem x:Name="menuItemExit" Header="Exit" Click="Menu_Exit_Click" FontSize="16"/>
-            </MenuItem>
-            <MenuItem Header="Sign In" Click="Button_Sign_In_Click" FontSize="18"/>
-            <MenuItem Header="Tools" FontSize="18">
-                <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools" FontSize="12">
-                    <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" FontSize="12"></MenuItem>
-                </MenuItem>
-                <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
-                    <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click" FontSize="12"></MenuItem>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click" FontSize="12" Margin="603,0,0,0"/>
-        </Menu>
+
+
+
+        <TextBox x:Name="Notes" Grid.Row="1" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="WrapWithOverflow" TextChanged="Notes_TextChanged" Margin="250,80,250,80"/>
+
+
+        <Label x:Name="noteName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="250,40,250,40" Content="untitled.txt" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="24"/>
     </Grid>
 </Window>
