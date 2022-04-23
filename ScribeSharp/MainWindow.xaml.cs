@@ -56,6 +56,13 @@ namespace ScribeSharp
             Calculator calc = new Calculator();
             calc.Show();
         }
+
+        private void Menu_Start_Class(object sender, RoutedEventArgs e)
+        {
+            Page1 page1 = new Page1();
+            this.Content = page1;
+        }
+
         private void Button_Sign_In_Click(object sender, RoutedEventArgs e) 
         {
             Login login = new();
@@ -78,6 +85,8 @@ namespace ScribeSharp
             registration.Show();
             this.Close();
         }
+
+
     }
 }
 

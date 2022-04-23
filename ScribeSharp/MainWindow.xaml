@@ -49,6 +49,12 @@
                         <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
                     </MenuItem>
                 </MenuItem>
+                <MenuItem Header="Classroom">
+                    <MenuItem x:Name="MenuItemJoinClass" Header="Join Class"/>
+                    <MenuItem x:Name="MenuItemLeaveClass" Header="Leave Class"/>
+                    <MenuItem x:Name="MenuItemStartClass" Header="Start Class" Click="Menu_Start_Class"/>
+                    <MenuItem x:Name="MenuItemEndClass" Header="End Class"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
 
