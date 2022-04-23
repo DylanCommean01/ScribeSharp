@@ -60,7 +60,7 @@ namespace ScribeSharp
 
         private void Menu_Start_Class(object sender, RoutedEventArgs e)
         {
-            ClassroomPage classroom_page = new ClassroomPage();
+            ClassroomPage classroom_page = new ClassroomPage(this);
             this.Content = classroom_page;
 
         }
