@@ -20,21 +20,32 @@ namespace ScribeSharp
     /// </summary>
     public partial class ClassroomPage : Page
     {
-        public ClassroomPage()
+
+        public ClassroomPage(MainWindow mainWindow)
         {
             InitializeComponent();
+            main = mainWindow;
         }
-
+        private MainWindow main;
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
-           
-            MainWindow main_window = new MainWindow();
+            if (main != null)
+            {
+                MainWindow newMain = new MainWindow();
+                newMain.Show();
+                main.Close();
+            }
+
+            //MainWindow main_window = new MainWindow();
+            //MainWindow main = Application.Current.MainWindow as MainWindow;
             //NavigationService.Navigate(new MainWindow());
             //this.NavigationService.Navigate(new MainWindow());
-            //this.Content = new MainWindow();
-            
-            main_window.Show();
+            //Content = main_window;
+
+            //main_window.Show();
 
         }
+
+
     }
 }
