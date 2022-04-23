@@ -8,8 +8,6 @@ namespace ScribeSharp
 {
     public abstract class User
     {
-        private NoteBook _noteBook;
-
         public abstract bool IsStudent();
         public abstract bool IsTeacher();
 

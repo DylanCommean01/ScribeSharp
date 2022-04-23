@@ -11,15 +11,16 @@ namespace ScribeSharp
     {
         private string _classID;
         private string _lastName;
+        private NoteBook _noteBook;
 
         public string ClassID { get; set; }
 
         public string LastName { get; }
 
-        public Teacher(string classID, string lastName)
+        public Teacher(string lastName, string classID)
         {
-            _classID = classID;
             _lastName = lastName;
+            _classID = classID;
         }
 
         public override bool IsStudent()

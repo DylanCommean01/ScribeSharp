@@ -21,25 +21,28 @@ namespace ScribeSharp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private User _user;
-        private NotePad _notePad;
-        private SqlConnection _connection;
-        private Registration registration = new();
-
+        public User user;
+        private NotePad notePad;
+        private Registration registration;
+        private Login login;
+        private string note;
         public MainWindow()
         {
             InitializeComponent();
+            registration = new();
+            login = new();
+            notePad = new(user, note);
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            _notePad.Save();
+            notePad.Save();
         }
 
 
         private void Menu_Save_Click(object sender, EventArgs e)
         {
-            _notePad.Save();
+            notePad.Save();
         }
 
         private void Menu_Exit_Click(object sender, RoutedEventArgs e)
@@ -69,16 +72,17 @@ namespace ScribeSharp
         {
             Login login = new();
             login.Show();
+            this.Close();
         }
 
         private void User_Profile_Click(object sender, RoutedEventArgs e)
         {
-            
+            // Implement sometime.
         }
 
         private void Notes_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            note = Notes.Text;
         }
 
         private void Button_Register_Click(object sender, RoutedEventArgs e)
@@ -87,8 +91,6 @@ namespace ScribeSharp
             registration.Show();
             this.Close();
         }
-
-
     }
 }
 

@@ -10,6 +10,7 @@ namespace ScribeSharp
     {
         private string _firstName;
         private string _lastName;
+        private NoteBook _noteBook;
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
