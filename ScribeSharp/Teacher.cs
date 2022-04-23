@@ -40,7 +40,7 @@ namespace ScribeSharp
 
         public override string ToString()
         {
-            return $"{ClassID} - {LastName}:";
+            return $"{LastName} {ClassID}";
         }
     }
 }

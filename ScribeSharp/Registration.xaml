@@ -80,8 +80,6 @@
             <Menu DockPanel.Dock="Top" x:Name="menu">
                 <MenuItem Header="Profile">
                     <MenuItem Header="Login" Click="Button_Sign_In_Click"/>
-                    <MenuItem Header="Register" Click="Button_Register_Click"/>
-                    <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click"/>
                     <MenuItem Header="Logout" />
                 </MenuItem>
             </Menu>

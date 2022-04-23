@@ -10,7 +10,7 @@ namespace ScribeSharp
 {
     public class NotePad //: IImportable, IExportable
     {
-        private const string FILE = @"..\Data\Notes.txt";
+        private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private User _user;
         private string _note;
         private int _characterCount;
@@ -22,13 +22,15 @@ namespace ScribeSharp
             _user = user;
             _note = note;
             _characterCount = note.Length;
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
         }
 
         public void Save()
         {
             try
             {
-                using StreamWriter stream = new(FILE);
+                using StreamWriter stream = new(_filePath, true);
+                stream.WriteLine(_user.ToString());
                 stream.WriteLine(_note);
                 stream.Close();
             }

@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ScribeSharp
 {
@@ -22,13 +11,15 @@ namespace ScribeSharp
     /// </summary>
     public partial class Registration : Window
     {
+        private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private Login login;
-        private SqlConnection con;
-        private Registration registration;
+        private bool userExists = false;
+        private MainWindow mainWindow;
 
         public Registration()
         {
             InitializeComponent();
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
         }
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
@@ -55,6 +46,7 @@ namespace ScribeSharp
         }
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
+            userExists = false;
             if (Text_Box_Email.Text.Length == 0)
             {
                 Error_Message.Text = "Enter an appropriate email.";
@@ -71,6 +63,14 @@ namespace ScribeSharp
                 string firstname = Text_Box_First_Name.Text;
                 string lastname = Text_Box_Last_Name.Text;
                 string email = Text_Box_Email.Text;
+                string profession = "Student";
+                string classID = "";
+                if (email.Contains("@my.apsu.edu")) {
+                    profession = "Student";
+                } else if (email.Contains("@apsu.edu")) {
+                    profession = "Teacher";
+                    classID = RandomString();
+                }
                 string password = Password_Box.Password;
                 if (Password_Box.Password.Length == 0)
                 {
@@ -89,42 +89,85 @@ namespace ScribeSharp
                 }
                 else
                 {
-                    Error_Message.Text = "";
-                    con = new SqlConnection("Data Source=; Initial Catalog=Data; User ID=; Password=");
-                    con.Open();
-                    SqlCommand cmd = new("Insert into Registration(FirstName,LastName,Email,Password,Address) values('" + firstname + "','" + lastname + "','" + email + "','" + password + "')", con);
-                    cmd.CommandType = CommandType.Text;
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    Error_Message.Text = "You have Registered successfully.";
-                    Reset();
+                    using StreamReader sr = new(_filePath);
+                    string line = sr.ReadLine();
+                    while (line != null)
+                    {
+                        string[] lines = line.Split(' ');
+                        if (lines[3] == email)
+                        {
+                            userExists = true;
+                            Error_Message.Text = "A user already exists with this email.";
+                            break;
+                        }
+                        else
+                        {
+                            line = sr.ReadLine();
+                        }
+                    }
+                    sr.Close();
+                    if (!userExists)
+                    {
+                        try
+                        {
+                            using StreamWriter stream = new(_filePath, true);
+                            stream.Write($"{firstname} {lastname} {profession} {email} {password} {classID}\n");
+                            stream.Close();
+                            Error_Message.Text = "You have registered successfully.";
+                            this.Close();
+                            mainWindow = new();
+                            mainWindow.user = new Student(firstname, lastname);
+                            mainWindow.Show();
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            Trace.WriteLine("WARNING: File exists but is read-only.");
+                        }
+                        catch (PathTooLongException)
+                        {
+                            Trace.WriteLine("WARNING: The path name is too long.");
+                        }
+                        catch (IOException)
+                        {
+                            Trace.WriteLine("WARNING: Disk is full.");
+                        }
+                        catch (Exception exc)
+                        {
+                            Trace.WriteLine("WARNING: Something went terribly wrong...");
+                            Trace.WriteLine(exc);
+                        }
+                    }
                 }
             }
         }
+        private static string RandomString() {
+            Random rand = new Random();
 
-        private void Button_NotePad_Click(object sender, RoutedEventArgs e) 
-        {
-            this.Hide();
+            // Choosing the size of string
+            // Using Next() string
+            int stringlen = rand.Next(4, 10);
+            int randValue;
+            string str = "";
+            char letter;
+            for (int i = 0; i < stringlen; i++)
+            {
+
+                // Generating a random number.
+                randValue = rand.Next(0, 26);
+
+                // Generating random character by converting
+                // the random number into character.
+                letter = Convert.ToChar(randValue + 65);
+
+                // Appending the letter to string.
+                str = str + letter;
+            }
+            return str;
         }
-
-
-        private void Button_Sign_In_Click(object sender, RoutedEventArgs e)
-        {
-            Login login = new();
-            login.Show();
-        }
-
-        private void User_Profile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        private void Button_Register_Click(object sender, RoutedEventArgs e)
-        {
-            registration = new Registration();
-            registration.Show();
+        private void Button_Sign_In_Click(object sender, RoutedEventArgs e) {
+            login = new();
             this.Close();
+            login.Show();
         }
     }
 }
