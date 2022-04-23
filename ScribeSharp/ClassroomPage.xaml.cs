@@ -24,5 +24,17 @@ namespace ScribeSharp
         {
             InitializeComponent();
         }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+           
+            MainWindow main_window = new MainWindow();
+            //NavigationService.Navigate(new MainWindow());
+            //this.NavigationService.Navigate(new MainWindow());
+            //this.Content = new MainWindow();
+            
+            main_window.Show();
+
+        }
     }
 }

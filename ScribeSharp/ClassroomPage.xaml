@@ -34,5 +34,6 @@
 
             </Menu>
         </DockPanel>
+        <Button x:Name="buttonBack" Click="buttonBack_Click" Grid.Column="2" Content="Back" HorizontalAlignment="Left" Margin="235,129,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Page>

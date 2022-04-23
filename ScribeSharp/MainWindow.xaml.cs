@@ -36,6 +36,7 @@ namespace ScribeSharp
             _notePad.Save();
         }
 
+
         private void Menu_Save_Click(object sender, EventArgs e)
         {
             _notePad.Save();
@@ -59,8 +60,9 @@ namespace ScribeSharp
 
         private void Menu_Start_Class(object sender, RoutedEventArgs e)
         {
-            Page1 page1 = new Page1();
-            this.Content = page1;
+            ClassroomPage classroom_page = new ClassroomPage();
+            this.Content = classroom_page;
+
         }
 
         private void Button_Sign_In_Click(object sender, RoutedEventArgs e) 
