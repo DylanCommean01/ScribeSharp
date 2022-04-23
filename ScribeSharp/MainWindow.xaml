@@ -61,7 +61,7 @@
 
 
 
-        <TextBox x:Name="Notes" Grid.Row="1" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab ="True"  TextChanged="Notes_TextChanged" Padding="100" Margin="250,80,250,80"/>
+        <TextBox x:Name="Notes" Grid.Row="1" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="WrapWithOverflow" TextChanged="Notes_TextChanged" Margin="250,80,250,80"/>
 
 
         <Label x:Name="noteName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="250,40,250,40" Content="untitled.txt" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="24"/>
