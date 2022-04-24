@@ -32,22 +32,23 @@ namespace ScribeSharp
 
         private IPresentation pptxDoc;
         private string filepath;
-        private ISlide slide;
-        private ImageSourceConverter imgconvert;
         private int index = 0;
-        BitmapImage bitmapImage = new BitmapImage();
         System.Drawing.Image image;
-        //public const ExportImageFormat Jpeg;
 
         public ClassroomPage(MainWindow mainWindow)
         {
             InitializeComponent();
             this.DataContext = this;
             main = mainWindow;
-            //ISlide slide = pptxDoc.Slides[0];
-            //slide.Visible = true;
+            if (mainWindow.user == null || !mainWindow.user.IsTeacher())
+            {
+                addPresentation.Visibility = Visibility.Hidden;
+                buttonPrevious.Visibility = Visibility.Hidden;
+                buttonNext.Visibility = Visibility.Hidden;
+            }
         }
         private MainWindow main;
+
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             if (main != null)
@@ -86,7 +87,6 @@ namespace ScribeSharp
             
             if (index > 0)
             {
-                
                 index--;
                 image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
                 try
@@ -96,10 +96,6 @@ namespace ScribeSharp
                 } catch(Exception ex) { }
                
             }
-            
-            
-
-
         }
 
         private void nextSlide_Click(object sender, RoutedEventArgs e)
@@ -114,7 +110,6 @@ namespace ScribeSharp
             }
             catch (Exception ex){
                 index--;
-
             }
 
             
