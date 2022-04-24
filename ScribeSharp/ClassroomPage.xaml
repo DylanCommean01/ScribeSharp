@@ -35,5 +35,6 @@
             </Menu>
         </DockPanel>
         <Button x:Name="buttonBack" Click="buttonBack_Click" Grid.Column="2" Content="Back" HorizontalAlignment="Left" Margin="235,129,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <MediaElement Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="220,242,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Page>
