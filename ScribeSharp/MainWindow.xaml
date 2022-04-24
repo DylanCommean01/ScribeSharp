@@ -31,6 +31,7 @@
             <Menu DockPanel.Dock="Top" x:Name="menu">
                 <MenuItem Header="File">
                     <MenuItem Header="Save" x:Name="menuItemSave" Click="Menu_Save_Click"/>
+                    <MenuItem Header="Save As" x:Name="menuItemSaveAs" Click="Menu_Save_As_Click"/>
                     <MenuItem Header="About" x:Name="menuItemAbout" Click="Menu_About_Click"/>
                     <Separator/>
                     <MenuItem Header="Exit" x:Name="menuItemExit" Click="Menu_Exit_Click"/>

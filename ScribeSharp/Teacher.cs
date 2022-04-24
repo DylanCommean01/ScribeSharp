@@ -13,9 +13,9 @@ namespace ScribeSharp
         private string _lastName;
         private NoteBook _noteBook;
 
-        public string ClassID { get; set; }
+        public string ClassID { get { return _classID; } }
 
-        public string LastName { get; }
+        public string LastName { get { return _lastName; } }
 
         public Teacher(string lastName, string classID)
         {

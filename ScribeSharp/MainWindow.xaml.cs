@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.
 
 namespace ScribeSharp
 {
@@ -29,20 +21,36 @@ namespace ScribeSharp
         public MainWindow()
         {
             InitializeComponent();
+            note = Notes.Text;
             registration = new();
             login = new();
             notePad = new(user, note);
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closed(object sender, RoutedEventArgs e)
         {
             notePad.Save();
         }
 
-
-        private void Menu_Save_Click(object sender, EventArgs e)
+        private void Menu_Save_Click(object sender, RoutedEventArgs e)
         {
-            notePad.Save();
+            if (user.IsStudent() || user.IsTeacher())
+            {
+                notePad.Save();
+            }
+        }
+
+        private void Menu_Save_As_Click(object sender, RoutedEventArgs e) {
+            SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "Text file|*.txt|Word Document|*.docx|PDF Document|*.pdf";
+            saveFileDialog.Title = "Save a text File";
+            saveFileDialog.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.
+            if (saveFileDialog.FileName != "")
+            {
+                System.IO.File.WriteAllText(saveFileDialog.FileName, Notes.Text);
+            }
         }
 
         private void Menu_Exit_Click(object sender, RoutedEventArgs e)

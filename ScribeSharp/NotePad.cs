@@ -13,6 +13,7 @@ namespace ScribeSharp
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private User _user;
         private string _note;
+        private string _fileName;
         private int _characterCount;
         public string Note { get; set; }
         public int CharacterCount => Note.Length;
@@ -21,6 +22,7 @@ namespace ScribeSharp
         {
             _user = user;
             _note = note;
+            _fileName = "untitled.txt";
             _characterCount = note.Length;
             _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
         }
@@ -31,6 +33,7 @@ namespace ScribeSharp
             {
                 using StreamWriter stream = new(_filePath, true);
                 stream.WriteLine(_user.ToString());
+                stream.WriteLine(_fileName);
                 stream.WriteLine(_note);
                 stream.Close();
             }
