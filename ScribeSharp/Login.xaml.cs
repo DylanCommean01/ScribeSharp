@@ -1,39 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ScribeSharp
 {
-    /// <summary>
-    /// Interaction logic for Login.xaml
-    /// </summary>
     public partial class Login : Window
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private Registration registration;
         private MainWindow mainWindow;
-
+        
         public Login()
         {
             InitializeComponent();
             _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
         }
-
+        
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             if (Text_Box_Email.Text.Length == 0)
@@ -50,7 +32,7 @@ namespace ScribeSharp
             else
             {
                 string email = Text_Box_Email.Text;
-                string password = Password_Box.Text;
+                string password = Password_Box.Password;
                 StreamReader sr = new(_filePath);
                 string line = sr.ReadLine();
                 while (line != null)
@@ -58,10 +40,12 @@ namespace ScribeSharp
                     string[] lines = line.Split(' ');
                     if (lines[3] == email && lines[4] == password && lines[2] == "Student")
                     {
-                        string firstName = lines[1];
-                        string lastName = lines[2];
+                        string firstName = lines[0];
+                        string lastName = lines[1];
+                        User user = new Student(firstName, lastName);
                         mainWindow = new();
-                        mainWindow.user = new Student(firstName, lastName); //Sending value from one form to another form.  
+                        mainWindow.Users = user; //Sending value from one form to another form.
+                        mainWindow.menuItemUserProfile.Header = user.ToString();
                         mainWindow.Show();
                         sr.Close();
                         Close();
@@ -70,9 +54,11 @@ namespace ScribeSharp
                     else if (lines[3] == email && lines[4] == password && lines[2] == "Teacher")
                     {
                         string classID = lines[6];
-                        string lastName = lines[2];
+                        string lastName = lines[1];
+                        User user = new Teacher(lastName, classID);
                         mainWindow = new();
-                        mainWindow.user = new Teacher(lastName, classID); //Sending value from one form to another form.
+                        mainWindow.Users = user; //Sending value from one form to another form.
+                        mainWindow.menuItemUserProfile.Header = user.ToString();
                         sr.Close();
                         mainWindow.Show();
                         this.Close();
@@ -87,6 +73,7 @@ namespace ScribeSharp
                 Error_Message.Text = "Please enter an existing email or password.";
             }
         }
+        
         private void Button_Register_Click(object sender, RoutedEventArgs e)
         {
             registration = new Registration();
@@ -96,6 +83,8 @@ namespace ScribeSharp
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+            mainWindow = new();
+            mainWindow.Show();
         }
     }
 }

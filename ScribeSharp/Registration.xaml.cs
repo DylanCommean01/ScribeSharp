@@ -6,14 +6,11 @@ using System.Windows;
 
 namespace ScribeSharp
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class Registration : Window
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private Login login;
-        private bool userExists = false;
+        private bool userExists;
         private MainWindow mainWindow;
 
         public Registration()
@@ -21,17 +18,19 @@ namespace ScribeSharp
             InitializeComponent();
             _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
         }
+        
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             login = new Login();
             login.Show();
             Close();
         }
+        
         private void Button_Reset_Click(object sender, RoutedEventArgs e)
         {
             Reset();
         }
-
+        
         public void Reset()
         {
             Text_Box_First_Name.Text = "";
@@ -40,10 +39,14 @@ namespace ScribeSharp
             Password_Box.Password = "";
             Password_Box_Confirm.Password = "";
         }
+        
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            mainWindow = new();
+            mainWindow.Show();
         }
+        
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
             userExists = false;
@@ -116,7 +119,7 @@ namespace ScribeSharp
                             Error_Message.Text = "You have registered successfully.";
                             this.Close();
                             mainWindow = new();
-                            mainWindow.user = new Student(firstname, lastname);
+                            mainWindow.Users = new Student(firstname, lastname);
                             mainWindow.Show();
                         }
                         catch (InvalidOperationException)
@@ -140,6 +143,7 @@ namespace ScribeSharp
                 }
             }
         }
+        
         private static string RandomString() {
             Random rand = new Random();
 
@@ -151,7 +155,6 @@ namespace ScribeSharp
             char letter;
             for (int i = 0; i < stringlen; i++)
             {
-
                 // Generating a random number.
                 randValue = rand.Next(0, 26);
 
@@ -164,6 +167,7 @@ namespace ScribeSharp
             }
             return str;
         }
+
         private void Button_Sign_In_Click(object sender, RoutedEventArgs e) {
             login = new();
             this.Close();

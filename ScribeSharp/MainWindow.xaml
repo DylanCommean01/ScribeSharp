@@ -39,8 +39,8 @@
                 <MenuItem Header="Profile">
                     <MenuItem Header="Login" Click="Button_Sign_In_Click"/>
                     <MenuItem Header="Register" Click="Button_Register_Click"/>
-                    <MenuItem x:Name="menuItemUserProfile" Header="UserProfile" Click="User_Profile_Click"/>
-                    <MenuItem Header="Logout" />
+                    <MenuItem x:Name="menuItemUserProfile" Header="User Profile" Click="User_Profile_Click"/>
+                    <MenuItem Header="Logout" Click="Button_Logout_Click" />
                 </MenuItem>
                 <MenuItem Header="Tools">
                     <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools">
@@ -59,12 +59,7 @@
             </Menu>
         </DockPanel>
 
-
-
-
         <TextBox x:Name="Notes" Grid.Row="1" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab ="True"  TextChanged="Notes_TextChanged" Padding="100" Margin="250,80,250,80"/>
-
-
         <Label x:Name="noteName" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="250,40,250,40" Content="untitled.txt" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="24"/>
     </Grid>
 </Window>

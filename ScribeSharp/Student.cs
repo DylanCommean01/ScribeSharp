@@ -8,16 +8,14 @@ namespace ScribeSharp
 {
     public class Student : User
     {
-        private string _firstName;
-        private string _lastName;
         private NoteBook _noteBook;
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Student(string firstName, string lastName)
         {
-            _firstName = firstName;
-            _lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public override bool IsStudent()

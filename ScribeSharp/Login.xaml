@@ -19,9 +19,9 @@
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,120,30,0" Name="Label_Email" Text="Email" VerticalAlignment="Top" Grid.ColumnSpan="1" Grid.Column="0" Width="28"/>
         <TextBlock Height="23" HorizontalAlignment="Right" Margin="0,168,30,0" Name="Label_Passord" Text="Password" VerticalAlignment="Top" Grid.ColumnSpan="1" />
         <TextBox Height="23" HorizontalAlignment="Center" Margin="0,120,0,0" Name="Text_Box_Email" VerticalAlignment="Top" Width="176" Grid.Column="1" />
-        <TextBox Height="23" HorizontalAlignment="Center" Margin="0,168,0,0" Name="Password_Box" VerticalAlignment="Top" Width="176" Grid.Column="1"/>
+        <PasswordBox Height="23" HorizontalAlignment="Center" Margin="0,168,0,0" Name="Password_Box" VerticalAlignment="Top" Width="176" Grid.Column="1"/>
         <Button Content="Login" Height="23" HorizontalAlignment="Center" Margin="0,208,0,0" Name="Button_Login" VerticalAlignment="Top" Width="104" Click="Button_Login_Click" Background="#FF37C316" Grid.Column="1" Grid.ColumnSpan="1" />
-        <TextBlock Height="23" HorizontalAlignment="Center" x:Name ="Error_Message" VerticalAlignment="Top" Margin="0,253,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C" Grid.Column="1" Width="292"  />
+        <TextBlock Height="23" HorizontalAlignment="Left" Text="" x:Name ="Error_Message" VerticalAlignment="Top" Margin="132,92,0,0"  OpacityMask="Crimson" Foreground="#FFE5572C" Width="261" Grid.ColumnSpan="3"  />
         <Button x:Name="buttonBack" Grid.Column="2" Content="Go Back" HorizontalAlignment="Right" Margin="0,3,3,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Back_Click"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="100" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="1" Grid.Column="0" Source="resources/ScribeSharpLogo.png">
             <Image.RenderTransform>

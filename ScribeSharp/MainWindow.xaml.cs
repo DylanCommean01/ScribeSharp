@@ -1,7 +1,4 @@
 ﻿using Microsoft.Win32;
-using System;
-using System.IO;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,34 +9,48 @@ namespace ScribeSharp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public User user;
         private NotePad notePad;
         private Registration registration;
         private Login login;
+        private User users;
         private string note;
+
         public MainWindow()
         {
             InitializeComponent();
             note = Notes.Text;
             registration = new();
             login = new();
-            notePad = new(user, note);
+        }
+
+        public User Users
+        {
+            get => users;
+            set
+            {
+                users = value;
+                notePad = new(Users, note);
+            }
         }
 
         private void Window_Closed(object sender, RoutedEventArgs e)
         {
-            notePad.Save();
-        }
-
-        private void Menu_Save_Click(object sender, RoutedEventArgs e)
-        {
-            if (user.IsStudent() || user.IsTeacher())
+            if (Users != null)
             {
                 notePad.Save();
             }
         }
 
-        private void Menu_Save_As_Click(object sender, RoutedEventArgs e) {
+        private void Menu_Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (Users != null)
+            {
+                notePad.Save();
+            }
+        }
+
+        private void Menu_Save_As_Click(object sender, RoutedEventArgs e)
+        {
             SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = "Text file|*.txt|Word Document|*.docx|PDF Document|*.pdf";
             saveFileDialog.Title = "Save a text File";
@@ -64,28 +75,37 @@ namespace ScribeSharp
 
         private void Menu_Calculator_Click(object sender, RoutedEventArgs e)
         {
-            Calculator calc = new Calculator();
-            calc.Show();
+            if (Users != null)
+            {
+                Calculator calc = new();
+                calc.Show();
+            }
         }
 
         private void Menu_Start_Class(object sender, RoutedEventArgs e)
         {
-            ClassroomPage classroom_page = new ClassroomPage(this);
-            this.Content = classroom_page;
-            //template on how to open page
+            if (Users != null && Users.IsTeacher())
+            {
+                ClassroomPage classroom_page = new ClassroomPage(this);
+                this.Content = classroom_page;
+                //template on how to open page
+            }
 
         }
 
-        private void Button_Sign_In_Click(object sender, RoutedEventArgs e) 
+        private void Button_Sign_In_Click(object sender, RoutedEventArgs e)
         {
-            Login login = new();
-            login.Show();
-            this.Close();
+            if (Users == null)
+            {
+                login = new();
+                login.Show();
+                this.Close();
+            }
         }
 
         private void User_Profile_Click(object sender, RoutedEventArgs e)
         {
-            // Implement sometime.
+            // Implement maybe later.
         }
 
         private void Notes_TextChanged(object sender, TextChangedEventArgs e)
@@ -95,9 +115,20 @@ namespace ScribeSharp
 
         private void Button_Register_Click(object sender, RoutedEventArgs e)
         {
-            registration = new Registration();
-            registration.Show();
-            this.Close();
+            if (Users == null)
+            {
+                registration = new Registration();
+                registration.Show();
+                this.Close();
+            }
+        }
+
+        private void Button_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            if (Users != null)
+            {
+                Users = null;
+            }
         }
     }
 }

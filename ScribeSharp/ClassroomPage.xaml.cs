@@ -24,12 +24,9 @@ namespace ScribeSharp
     /// Interaction logic for Page1.xaml
     /// </summary>
 
-       
+
     public partial class ClassroomPage : Page
     {
-      
-
-
         private IPresentation pptxDoc;
         private string filepath;
         private int index = 0;
@@ -40,14 +37,15 @@ namespace ScribeSharp
             InitializeComponent();
             this.DataContext = this;
             main = mainWindow;
-            if (mainWindow.user == null || mainWindow.user.IsStudent())
+            if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
                 addPresentation.Visibility = Visibility.Hidden;
                 buttonPrevious.Visibility = Visibility.Hidden;
                 buttonNext.Visibility = Visibility.Hidden;
-            } else if (mainWindow.user.IsTeacher())
+            }
+            else if (mainWindow.Users.IsTeacher())
             {
-                
+
             }
         }
         private MainWindow main;
@@ -77,7 +75,7 @@ namespace ScribeSharp
                 pptxDoc.ChartToImageConverter = new ChartToImageConverter();
                 pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
                 image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
-               
+
                 image.Save(@$"../currentSlide{index}.png");
                 img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
                 addPresentation.Visibility = Visibility.Hidden;
@@ -87,7 +85,7 @@ namespace ScribeSharp
 
         private void previousSlide_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (index > 0)
             {
                 index--;
@@ -96,8 +94,9 @@ namespace ScribeSharp
                 {
                     image.Save(@$"../currentSlide{index}.png");
                     img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
-                } catch(Exception ex) { }
-               
+                }
+                catch (Exception ex) { }
+
             }
         }
 
@@ -111,11 +110,12 @@ namespace ScribeSharp
                 image.Save(@$"../currentSlide{index}.png");
                 img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 index--;
             }
 
-            
+
 
         }
     }
