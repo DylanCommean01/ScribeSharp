@@ -42,7 +42,7 @@
             <Button x:Name="addPresentation" Content="Add Presentation" Height="33" Width="308" Click="addPresentation_Click"/>
 
         </Grid>
-        <Button Content="Previous" HorizontalAlignment="Left" Margin="491,22,0,0" Grid.Row="1" VerticalAlignment="Top" Click="previousSlide_Click" Height="48" Width="111"  FontSize="25"/>
-        <Button Grid.Column="1" Content="Next" HorizontalAlignment="Left" Margin="47,22,0,0" Grid.Row="1" VerticalAlignment="Top" Click="nextSlide_Click" Height="48" Width="111" FontSize="25"/>
+        <Button HorizontalAlignment="Left" Grid.Column="1" Content="Previous"  Grid.Row="1" VerticalAlignment="Top" Click="previousSlide_Click" Height="25" Width="111"  FontSize="12"/>
+        <Button HorizontalAlignment="Right" Grid.Column="1" Content="Next" Grid.Row="1" VerticalAlignment="Top" Click="nextSlide_Click" Height="25" Width="111" FontSize="12"/>
     </Grid>
 </Page>

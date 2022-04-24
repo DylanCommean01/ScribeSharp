@@ -74,10 +74,8 @@ namespace ScribeSharp
                 pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
                 image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
                
-                image.Save(@"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide.png");
-
-
-                img.Source = new BitmapImage(new Uri(@"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide.png"));
+                image.Save(@$"../currentSlide{index}.png");
+                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
                 addPresentation.Visibility = Visibility.Hidden;
             }
             //\\Mac\Home\Desktop\Spring\2022
@@ -85,31 +83,38 @@ namespace ScribeSharp
 
         private void previousSlide_Click(object sender, RoutedEventArgs e)
         {
-            if(index > 0)
+            
+            if (index > 0)
             {
+                
                 index--;
+                image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
+                try
+                {
+                    image.Save(@$"../currentSlide{index}.png");
+                    img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
+                } catch(Exception ex) { }
                
             }
-            image.Dispose();
-            image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
-            image.Save(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png");
+            
+            
 
-            img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png"));
 
         }
 
         private void nextSlide_Click(object sender, RoutedEventArgs e)
         {
+            index++;
             image.Dispose();
             try
             {
-                index++;
                 image = pptxDoc.Slides[index++].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
-                image.Save(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png");
-
-                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png"));
-            } catch (Exception ex){
+                image.Save(@$"../currentSlide{index}.png");
+                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
+            }
+            catch (Exception ex){
                 index--;
+
             }
 
             
