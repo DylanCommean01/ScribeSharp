@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Core.Renci.SshNet" Version="2021.10.2" />
+    <PackageReference Include="SSH.NET" Version="2013.4.7" />
     <PackageReference Include="Syncfusion.OfficeChartToImageConverter.WPF" Version="20.1.0.50" />
     <PackageReference Include="Syncfusion.Presentation.Wpf" Version="20.1.0.50" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />

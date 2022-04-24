@@ -40,11 +40,14 @@ namespace ScribeSharp
             InitializeComponent();
             this.DataContext = this;
             main = mainWindow;
-            if (mainWindow.user == null || !mainWindow.user.IsTeacher())
+            if (mainWindow.user == null || mainWindow.user.IsStudent())
             {
                 addPresentation.Visibility = Visibility.Hidden;
                 buttonPrevious.Visibility = Visibility.Hidden;
                 buttonNext.Visibility = Visibility.Hidden;
+            } else if (mainWindow.user.IsTeacher())
+            {
+                
             }
         }
         private MainWindow main;
