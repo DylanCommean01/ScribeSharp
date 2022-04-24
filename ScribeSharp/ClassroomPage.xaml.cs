@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Syncfusion.Presentation;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Syncfusion.OfficeChartToImageConverter;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,19 +15,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using Syncfusion.Drawing;
 
 namespace ScribeSharp
 {
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
+
+       
     public partial class ClassroomPage : Page
     {
+      
+
+
+        private IPresentation pptxDoc;
+        private string filepath;
+        private ISlide slide;
+        private ImageSourceConverter imgconvert;
+        private int index = 0;
+        BitmapImage bitmapImage = new BitmapImage();
+        System.Drawing.Image image;
+        //public const ExportImageFormat Jpeg;
 
         public ClassroomPage(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.DataContext = this;
             main = mainWindow;
+            //ISlide slide = pptxDoc.Slides[0];
+            //slide.Visible = true;
         }
         private MainWindow main;
         private void buttonBack_Click(object sender, RoutedEventArgs e)
@@ -38,6 +59,62 @@ namespace ScribeSharp
             //template on how to return from page to window
         }
 
+        private void addPresentation_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new OpenFileDialog();
 
+            bool? response = openFileDialog.ShowDialog();
+
+            if (response == true)
+            {
+                filepath = openFileDialog.FileName;
+                //MessageBox.Show(filepath);
+                pptxDoc = Presentation.Open(filepath);
+                pptxDoc.ChartToImageConverter = new ChartToImageConverter();
+                pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
+                image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
+               
+                image.Save(@"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide.png");
+
+
+                img.Source = new BitmapImage(new Uri(@"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide.png"));
+                addPresentation.Visibility = Visibility.Hidden;
+            }
+            //\\Mac\Home\Desktop\Spring\2022
+        }
+
+        private void previousSlide_Click(object sender, RoutedEventArgs e)
+        {
+            if(index > 0)
+            {
+                index--;
+               
+            }
+            image.Dispose();
+            image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
+            image.Save(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png");
+
+            img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png"));
+
+        }
+
+        private void nextSlide_Click(object sender, RoutedEventArgs e)
+        {
+            image.Dispose();
+            try
+            {
+                index++;
+                image = pptxDoc.Slides[index++].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
+                image.Save(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png");
+
+                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\currentSlide{index}.png"));
+            } catch (Exception ex){
+                index--;
+            }
+
+            
+
+        }
     }
 }
+

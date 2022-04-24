@@ -7,8 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ScribeSharpLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.OfficeChartToImageConverter.WPF" Version="20.1.0.50" />
     <PackageReference Include="Syncfusion.Presentation.Wpf" Version="20.1.0.50" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ScribeSharpLogo.png" />
   </ItemGroup>
 
 </Project>

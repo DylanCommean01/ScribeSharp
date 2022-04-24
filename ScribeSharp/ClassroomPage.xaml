@@ -26,7 +26,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        
+
         <DockPanel  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <Menu DockPanel.Dock="Top" x:Name="menu">
                 <MenuItem Header="Profile"/>
@@ -36,5 +36,13 @@
         </DockPanel>
         <Button x:Name="buttonBack" Click="buttonBack_Click" Grid.Column="2" Content="Back" HorizontalAlignment="Left" Margin="235,129,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <MediaElement Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="220,242,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Name="change"  Margin="0,30,0,200" Height="720" Width="1240" Background="#FFD5CCCC">
+
+            <Image Name="img" HorizontalAlignment="Left" Margin="10,17,0,12"  Height="720" Width="1280"/>
+            <Button x:Name="addPresentation" Content="Add Presentation" Height="33" Width="308" Click="addPresentation_Click"/>
+
+        </Grid>
+        <Button Content="Previous" HorizontalAlignment="Left" Margin="491,22,0,0" Grid.Row="1" VerticalAlignment="Top" Click="previousSlide_Click" Height="48" Width="111"  FontSize="25"/>
+        <Button Grid.Column="1" Content="Next" HorizontalAlignment="Left" Margin="47,22,0,0" Grid.Row="1" VerticalAlignment="Top" Click="nextSlide_Click" Height="48" Width="111" FontSize="25"/>
     </Grid>
 </Page>
