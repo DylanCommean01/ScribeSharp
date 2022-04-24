@@ -35,15 +35,7 @@ namespace ScribeSharp
                 newMain.Show();
                 main.Close();
             }
-
-            //MainWindow main_window = new MainWindow();
-            //MainWindow main = Application.Current.MainWindow as MainWindow;
-            //NavigationService.Navigate(new MainWindow());
-            //this.NavigationService.Navigate(new MainWindow());
-            //Content = main_window;
-
-            //main_window.Show();
-
+            //template on how to return from page to window
         }
 
 

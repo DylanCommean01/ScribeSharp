@@ -73,6 +73,7 @@ namespace ScribeSharp
         {
             ClassroomPage classroom_page = new ClassroomPage(this);
             this.Content = classroom_page;
+            //template on how to open page
 
         }
 
