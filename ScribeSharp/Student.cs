@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace ScribeSharp
@@ -18,6 +19,7 @@ namespace ScribeSharp
         }
 
         public NoteBook NBook { get; set; }
+
         private NoteBook InitializeNoteBook()
         {
             StreamReader sr = new(_filePath);
@@ -28,10 +30,16 @@ namespace ScribeSharp
             {
                 if (line.Contains($"{FirstName} {LastName}"))
                 {
-                    string title = sr.ReadLine();
-                    string notes = sr.ReadLine().Replace("˥", "\n");
-                    noteBook.AddNotes(title, notes);
-                    sr.ReadLine();
+                    try
+                    {
+                        string title = sr.ReadLine();
+                        string notes = sr.ReadLine().Replace("˥", "\n");
+                        noteBook.AddNotes(title, notes);
+                        sr.ReadLine();
+                    }
+                    catch (Exception e) {
+                        sr.ReadLine();
+                    }
                 }
                 line = sr.ReadLine();
             }
@@ -52,6 +60,7 @@ namespace ScribeSharp
         {
             throw new NotImplementedException();
         }
+
         public override string ToString()
         {
             return $"{FirstName} {LastName}";

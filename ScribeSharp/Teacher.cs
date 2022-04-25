@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace ScribeSharp
 {
@@ -23,6 +21,7 @@ namespace ScribeSharp
             _lastName = lastName;
             _classID = classID;
             _firstName = firstName;
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
             NBook = InitializeNoteBook();
         }
         public NoteBook NBook { get; set; }

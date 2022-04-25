@@ -5,9 +5,6 @@ using System.Windows.Input;
 
 namespace ScribeSharp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private NotePad notePad;
@@ -23,7 +20,6 @@ namespace ScribeSharp
             registration = new();
             login = new();
         }
-
         public User Users
         {
             get => users;
