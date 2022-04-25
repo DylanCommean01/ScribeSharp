@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ScribeSharp
 {
@@ -32,6 +33,8 @@ namespace ScribeSharp
                 notePad = new(Users, note);
             }
         }
+
+        public string FileName { get; set; }
 
         private void Window_Closed(object sender, RoutedEventArgs e)
         {
@@ -130,6 +133,24 @@ namespace ScribeSharp
                 Users = null;
             }
         }
+
+        private void Menu_Rename_Click(object sender, RoutedEventArgs e)
+        {
+            noteNameBlock.Visibility = Visibility.Hidden;
+            noteNameBox.Visibility = Visibility.Visible;
+        }
+
+        private void On_Enter_Handler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                noteNameBlock.Text = noteNameBox.Text;
+                FileName = noteNameBlock.Text;
+                noteNameBlock.Visibility = Visibility.Visible;
+                noteNameBox.Visibility = Visibility.Hidden;
+            }
+        }
+
     }
 }
 

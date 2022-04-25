@@ -1,40 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScribeSharp
 {
     public class NotePad //: IImportable, IExportable
     {
-        private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
-        private User _user;
-        private string _note;
-        private string _fileName;
-        private int _characterCount;
+        private string filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        private User user;
+        private string fileName;
         public string Note { get; set; }
         public int CharacterCount => Note.Length;
 
-        public NotePad(User user, string note)
+        public NotePad(User user, string note, string fileName = "untitled")
         {
-            _user = user;
-            _note = note;
-            _fileName = "untitled.txt";
-            _characterCount = note.Length;
-            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
+            this.user = user;
+            Note = note;
+            this.fileName = fileName;
+            filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
         }
 
         public void Save()
         {
             try
             {
-                using StreamWriter stream = new(_filePath, true);
-                stream.WriteLine(_user.ToString());
-                stream.WriteLine(_fileName);
-                stream.WriteLine(_note);
+                using StreamWriter stream = new(filePath, true);
+                stream.WriteLine(user.ToString());
+                stream.WriteLine(fileName);
+                stream.WriteLine(Note.Replace("\n", "˥"));
+                stream.WriteLine(CharacterCount);
+                
+
                 stream.Close();
             }
             catch (InvalidOperationException)

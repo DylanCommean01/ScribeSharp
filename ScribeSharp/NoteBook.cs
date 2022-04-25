@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ScribeSharp
 {
     public class NoteBook
     {
-        private SortedDictionary<string, NotePad> _notes;
-        public NoteBook(SortedDictionary<string, NotePad> notes)
+        private SortedDictionary<string, string> _notes;
+        public NoteBook(SortedDictionary<string, string> notes)
         {
             _notes = notes;
         }
 
-        public void AddNotes(string name, NotePad note)
+        public void AddNotes(string name, string note)
         {
             _notes.Add(name, note);
         }
@@ -24,7 +20,7 @@ namespace ScribeSharp
             return _notes.Remove(name);
         }
 
-        public void EditNotes(string name, NotePad note)
+        public void EditNotes(string name, string note)
         {
             // Will implement this later
         }

@@ -55,7 +55,8 @@ namespace ScribeSharp
                     {
                         string classID = lines[6];
                         string lastName = lines[1];
-                        User user = new Teacher(lastName, classID);
+                        string firstName = lines[0];
+                        User user = new Teacher(firstName, lastName, classID);
                         mainWindow = new();
                         mainWindow.Users = user; //Sending value from one form to another form.
                         mainWindow.menuItemUserProfile.Header = user.ToString();
