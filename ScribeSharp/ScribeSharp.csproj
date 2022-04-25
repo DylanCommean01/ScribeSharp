@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspDotNet.FTPHelper" Version="1.0.6" />
     <PackageReference Include="Core.Renci.SshNet" Version="2021.10.2" />
+    <PackageReference Include="FluentFTP" Version="37.0.2" />
     <PackageReference Include="SSH.NET" Version="2013.4.7" />
     <PackageReference Include="Syncfusion.OfficeChartToImageConverter.WPF" Version="20.1.0.50" />
     <PackageReference Include="Syncfusion.Presentation.Wpf" Version="20.1.0.50" />

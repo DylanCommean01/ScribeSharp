@@ -17,6 +17,14 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using Syncfusion.Drawing;
+using AspDotNet.FTPHelper;
+using FluentFTP;
+using System.Net;
+
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+
 
 namespace ScribeSharp
 {
@@ -31,19 +39,23 @@ namespace ScribeSharp
         private string filepath;
         private int index = 0;
         System.Drawing.Image image;
+        FtpClient client = new FtpClient("thelastprodigy.site", "ScribeSharp@thelastprodigy.site", "CSCI4600");
+        private sftpConnect upload;
+        //FTPHelper fTPHelper = new FTPHelper("ftp.thelastprodigy.site", "ScribeSharp", "CSCI4600");
+
 
         public ClassroomPage(MainWindow mainWindow)
         {
             InitializeComponent();
             this.DataContext = this;
             main = mainWindow;
-            if (mainWindow.Users == null || mainWindow.Users.IsStudent())
+            client.AutoConnect();
+            if (mainWindow.user == null || mainWindow.user.IsStudent())
             {
-                addPresentation.Visibility = Visibility.Hidden;
-                buttonPrevious.Visibility = Visibility.Hidden;
-                buttonNext.Visibility = Visibility.Hidden;
-            }
-            else if (mainWindow.Users.IsTeacher())
+                //addPresentation.Visibility = Visibility.Hidden;
+                //buttonPrevious.Visibility = Visibility.Hidden;
+                //buttonNext.Visibility = Visibility.Hidden;
+            } else if (mainWindow.user.IsTeacher())
             {
 
             }
@@ -77,6 +89,7 @@ namespace ScribeSharp
                 image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
 
                 image.Save(@$"../currentSlide{index}.png");
+                upload = new(image);
                 img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
                 addPresentation.Visibility = Visibility.Hidden;
             }
@@ -85,6 +98,7 @@ namespace ScribeSharp
 
         private void previousSlide_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("test Console");
 
             if (index > 0)
             {
