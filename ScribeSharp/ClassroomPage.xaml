@@ -40,8 +40,8 @@
                 </MenuItem>
                 <MenuItem Header="Classroom">
                     <MenuItem Header="Leave Class" Click="buttonBack_Click"/>
-                    <MenuItem Header="Grab Current Presentation" Click="grabPresentation_Click"/>
-                    <MenuItem Header="Save Presentation" Click="save_Click"/>
+                    <MenuItem Name="grab" Header="Grab Current Presentation" Click="grabPresentation_Click"/>
+                    <MenuItem Name="save" Header="Save Presentation" Click="save_Click"/>
                 </MenuItem>
 
 

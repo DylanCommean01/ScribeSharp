@@ -59,7 +59,7 @@ namespace ScribeSharp
             _fileMessages = Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileMessages).FullName).FullName).FullName + @"\Data\Messages.txt";
             this.DataContext = this;
             main = mainWindow;
-            teachers = (Teacher)main.Users;
+            //teachers = (Teacher)main.Users;
             chatroom.Text = RenderClassIDMessages();
             if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
