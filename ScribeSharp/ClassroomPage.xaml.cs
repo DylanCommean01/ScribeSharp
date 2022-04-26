@@ -23,7 +23,7 @@ using System.Net;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
+using Path = System.IO.Path;
 
 namespace ScribeSharp
 {
@@ -37,10 +37,15 @@ namespace ScribeSharp
         private IPresentation pptxDoc;
         private string filepath;
         private int index = 0;
-        System.Drawing.Image image;
+        System.Drawing.Image[] image;
         FtpClient client = new FtpClient("thelastprodigy.site", "ScribeSharp@thelastprodigy.site", "CSCI4600");
-        private sftpConnect upload;
-        //FTPHelper fTPHelper = new FTPHelper("ftp.thelastprodigy.site", "ScribeSharp", "CSCI4600");
+        private sftpConnect upload = new sftpConnect();
+        bool open = false;
+        private string nondeleted = "";
+        private MainWindow main;
+        //private chatClient chat_client;
+        //private chatServer chat_server;
+
 
 
         public ClassroomPage(MainWindow mainWindow)
@@ -52,14 +57,16 @@ namespace ScribeSharp
             if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
                 //addPresentation.Visibility = Visibility.Hidden;
-                //buttonPrevious.Visibility = Visibility.Hidden;
-                //buttonNext.Visibility = Visibility.Hidden;
+
+                
             } else if (mainWindow.Users.IsTeacher())
             {
 
             }
+            buttonPrevious.Visibility = Visibility.Hidden;
+            buttonNext.Visibility = Visibility.Hidden;
         }
-        private MainWindow main;
+        
 
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
@@ -81,54 +88,152 @@ namespace ScribeSharp
             if (response == true)
             {
                 filepath = openFileDialog.FileName;
+                //upload.deleteFile(filepath);
+                upload.uploadFile(filepath);
                 //MessageBox.Show(filepath);
-                pptxDoc = Presentation.Open(filepath);
+                
+                if (open == false) { 
+                    pptxDoc = Presentation.Open(filepath);
+                    open = true;
+                } else
+                {
+                    string applogo = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+                    pptxDoc.Close();
+                    
+                    pptxDoc = Presentation.Open(filepath);
+                    for (int x =0; x < image.Length; x++)
+                    {
+                        image[x].Dispose();
+                    }
+                    Array.Clear(image, 0, image.Length);
+
+                    applogo = Directory.GetParent(Directory.GetParent(Directory.GetParent(applogo).FullName).FullName).FullName + @$"\resources\ScribeSharpLogo.png";
+                    img.Source = new BitmapImage(new Uri(applogo));
+                }
+                
                 pptxDoc.ChartToImageConverter = new ChartToImageConverter();
                 pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
-                image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
 
-                image.Save(@$"../currentSlide{index}.png");
-                upload = new(image);
-                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
-                addPresentation.Visibility = Visibility.Hidden;
+
+
+                index = 0;
+                string test = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+                //if (Directory.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides")){
+                  //  DeleteDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+                //}
+                //Directory.CreateDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+                string newTest = Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides\currentSlide{index}.png";
+                image = pptxDoc.RenderAsImages(Syncfusion.Drawing.ImageType.Metafile);
+                image[index].Save(newTest);
+                img.Source = new BitmapImage(new Uri(newTest));
+
+                buttonPrevious.Visibility = Visibility.Visible;
+                buttonNext.Visibility = Visibility.Visible;
             }
-            //\\Mac\Home\Desktop\Spring\2022
         }
 
         private void previousSlide_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("test Console");
+           
 
             if (index > 0)
             {
+
+                
                 index--;
-                image = pptxDoc.Slides[index].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
+              
+                string test = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+                 test = Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides\currentSlide{index}.png";
+                
+                
                 try
                 {
-                    image.Save(@$"../currentSlide{index}.png");
-                    img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
+                    image[index].Save(test);
+                    img.Source = new BitmapImage(new Uri(test));
                 }
-                catch (Exception ex) { }
-
+                catch (System.Runtime.InteropServices.ExternalException ex)
+                {
+                    img.Source = new BitmapImage(new Uri(test));
+                }
+                if (open == true && !nondeleted.Equals(""))
+                {
+                    //MessageBox.Show(nondeleted);
+                    File.Delete(nondeleted);
+                }
             }
+
         }
 
         private void nextSlide_Click(object sender, RoutedEventArgs e)
         {
-            index++;
-            image.Dispose();
-            try
+            
+            if (index < image.Length)
             {
-                image = pptxDoc.Slides[index++].ConvertToImage(Syncfusion.Drawing.ImageType.Metafile);
-                image.Save(@$"../currentSlide{index}.png");
-                img.Source = new BitmapImage(new Uri(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\ScribeSharp2\ScribeSharp\bin\Debug\currentSlide{index}.png"));
+                index++;
+                
+                string test = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+                test = Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides\currentSlide{index}.png";
+               
+                try
+                {
+                    image[index].Save(test);
+                    img.Source = new BitmapImage(new Uri(test));
+                } catch (System.Runtime.InteropServices.ExternalException ex)
+                {
+                    img.Source = new BitmapImage(new Uri(test));
+                }
+                if (open == true && !nondeleted.Equals(""))
+                {
+                    //MessageBox.Show(nondeleted);
+                    File.Delete(nondeleted);
+                }
             }
-            catch (Exception ex)
+        }
+
+        public void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+            
+            foreach (string file in files)
             {
-                index--;
+                File.SetAttributes(file, FileAttributes.Normal);
+                try
+                {
+                    File.Delete(file);
+                } catch (System.IO.IOException ex){
+                    //MessageBox.Show(file);
+                    nondeleted = file;
+                    
+                }
+                
             }
 
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
 
+            
+        }
+
+        private void chat_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void grabPresentation_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Menu_Calculator_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
