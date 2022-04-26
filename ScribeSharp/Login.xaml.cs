@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -7,17 +8,22 @@ namespace ScribeSharp
     public partial class Login : Window
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        private string _fileRoot = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private Registration registration;
         private MainWindow mainWindow;
+        private sftpConnect connect;
         
         public Login()
         {
             InitializeComponent();
-            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
+           
         }
         
         private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
+            connect = new();
+            connect.readFile(Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt");
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
             if (Text_Box_Email.Text.Length == 0)
             {
                 Error_Message.Text = "Enter an email.";
@@ -46,9 +52,14 @@ namespace ScribeSharp
                         mainWindow = new();
                         mainWindow.Users = user; //Sending value from one form to another form.
                         mainWindow.menuItemUserProfile.Header = user.ToString();
+                        
                         mainWindow.Show();
                         sr.Close();
                         Close();
+                        if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt"))
+                        {
+                            File.Delete(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt");
+                        }
                         break;
                     }
                     else if (lines[3] == email && lines[4] == password && lines[2] == "Teacher")
@@ -57,10 +68,11 @@ namespace ScribeSharp
                         string lastName = lines[1];
                         string firstName = lines[0];
                         User user = new Teacher(firstName, lastName, classID);
-                        mainWindow = new();
+                        mainWindow = new(classID);
                         mainWindow.Users = user; //Sending value from one form to another form.
                         mainWindow.menuItemUserProfile.Header = user.ToString();
                         sr.Close();
+                       
                         mainWindow.Show();
                         this.Close();
                         break;

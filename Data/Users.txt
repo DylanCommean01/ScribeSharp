@@ -2,3 +2,6 @@
 Dylan Commean Student dcommean@my.apsu.edu password123!
 Mir Hasan Teacher mhasan@apsu.edu password DGIMMDA
 James Church Teacher jchurch@apsu.edu password KYON
+Test TestB Student testC@email.com password 
+John Doe Student test1@email.com password
+Scribe Sharp Teacher scribe@sharp.com password ZNSW

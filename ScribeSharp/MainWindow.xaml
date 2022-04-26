@@ -52,11 +52,9 @@
                         <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Classroom" x:Name="menuItemClassroom" Visibility="Collapsed">
+                <MenuItem Header="Classroom" x:Name="menuItemClassroom" Click="Menu_Start_Class" Visibility="Collapsed">
                     <MenuItem x:Name="MenuItemJoinClass" Visibility="Collapsed" Header="Join Class"/>
-                    <MenuItem x:Name="MenuItemLeaveClass" Visibility="Collapsed" Header="Leave Class" />
                     <MenuItem x:Name="MenuItemStartClass" Visibility="Collapsed" Header="Start Class" Click="Menu_Start_Class" />
-                    <MenuItem x:Name="MenuItemEndClass" Visibility="Collapsed" Header="End Class" />
                 </MenuItem>
                     <MenuItem Header="NoteBook" x:Name="noteBookHeader" Visibility="Collapsed">
                     <MenuItem Header="" x:Name="noteBooksOne" Visibility="Collapsed">

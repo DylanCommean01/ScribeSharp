@@ -12,24 +12,42 @@ namespace ScribeSharp
     public partial class MainWindow : Window
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        private string _fileRoot = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private NotePad notePad;
         private Registration registration;
         private NoteBook noteBook;
         private SortedDictionary<string, string> sd;
+        private sftpConnect connect;
         private Login login;
         private User users;
         private string note;
         private string fileName;
+        public string classID;
         public MainWindow()
         {
             InitializeComponent();
+
             _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
             fileName = "untitled";
             Note = Notes.Text;
             registration = new();
             login = new();
             sd = new();
+
         }
+        public MainWindow(string classID)
+        {
+            InitializeComponent();
+
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\NoteBooks.txt";
+            fileName = "untitled";
+            Note = Notes.Text;
+            registration = new();
+            login = new();
+            sd = new();
+            this.classID = classID;
+        }
+
         public User Users
         {
             get => users;
@@ -143,12 +161,37 @@ namespace ScribeSharp
 
         private void Menu_Start_Class(object sender, RoutedEventArgs e)
         {
-            //if (Users != null && Users.IsTeacher())
-            //{
+            
+
+            if (Users.IsTeacher()){
                 ClassroomPage classroom_page = new ClassroomPage(this);
                 this.Content = classroom_page;
-                //template on how to open page
-            //}
+            } else
+            {
+                connect = new();
+                connect.readFile(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt");
+                _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt";
+                StreamReader sr = new(_filePath);
+                string contents = sr.ReadToEnd();
+
+                string input;
+                input = Microsoft.VisualBasic.Interaction.InputBox("Enter Join Code", "Join Class", "");
+                while(!contents.Contains(input))
+                {
+                    MessageBox.Show("Incorrect Join Code");
+                    input = Microsoft.VisualBasic.Interaction.InputBox("Enter Join Code", "Join Class", "");
+                }
+                sr.Close();
+                if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt"))
+                {
+                    File.Delete(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt");
+                }
+                ClassroomPage classroom_page = new ClassroomPage(this);
+                classroom_page.storeClassID(input);
+                this.Content = classroom_page;
+
+            }
+     
 
         }
 

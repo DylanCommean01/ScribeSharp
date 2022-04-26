@@ -14,13 +14,39 @@ namespace ScribeSharp
     class sftpConnect
 
     {
-        public string readFile(string filepath)
+        public void readFile(string localpath)
         {
             using (FtpClient ftp = CreateFtpClient())
             {
-                ftp.DownloadFile(filepath, Path.GetFileName(filepath));
-                string fs = File.ReadAllText(filepath);
-                return fs;
+                ftp.Connect();
+                ftp.DownloadFile(localpath, Path.GetFileName(localpath));
+                ftp.Dispose();
+                //string fs = File.ReadAllText(filepath);
+                //return fs;
+            }
+        }
+        public void readFile(string localpath, string joinID)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                ftp.Connect();
+                ftp.CreateDirectory($"/{joinID}/");
+                ftp.DownloadFile(localpath, $"/{joinID}/{Path.GetFileName(localpath)}");
+                ftp.Dispose();
+                //string fs = File.ReadAllText(filepath);
+                //return fs;
+            }
+        }
+        public void readFile(string localpath, string joinID, string actualPath)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                ftp.Connect();
+                ftp.CreateDirectory($"/{joinID}/");
+                ftp.DownloadFile(localpath, $"/{joinID}/{Path.GetFileName(actualPath)}");
+                ftp.Dispose();
+                //string fs = File.ReadAllText(filepath);
+                //return fs;
             }
         }
 
@@ -29,7 +55,7 @@ namespace ScribeSharp
             using (FtpClient ftp = CreateFtpClient())
             {
                 ftp.DeleteFile(Path.GetFileName(filepath));
-
+                ftp.Dispose();
             }
         }
 
@@ -43,17 +69,44 @@ namespace ScribeSharp
                     using (FileStream fs = File.OpenRead(filepath))
                     {
                         ftp.Upload(fs, Path.GetFileName(filepath));
+                        fs.Close();
                     }
+                    ftp.Dispose();
+
                 }
                 else
                 {
                     deleteFile(filepath);
                     uploadFile(filepath);
+
+                }
+            }
+        }
+        public void uploadPPT(string filepath, string classID)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                if (!ftp.FileExists(Path.GetFileName(filepath)))
+                {
+                    using (FileStream fs = File.OpenRead(filepath))
+                    {
+                        ftp.CreateDirectory($"/{classID}/");
+                        ftp.Upload(fs, $"/{classID}/{Path.GetFileName("currentPowerpoint.pptx")}");
+                        fs.Close();
+                    }
+                    ftp.Dispose();
+
+                }
+                else
+                {
+                    deleteFile(filepath);
+                    uploadPPT(filepath, classID);
+
                 }
             }
         }
 
-        
+
         private FtpClient CreateFtpClient()
         {
             return new FtpClient("ftp://e129250-ftp.services.easyname.eu", new System.Net.NetworkCredential { UserName = "196693ftp2", Password = ".dd4erlqtmi4" });

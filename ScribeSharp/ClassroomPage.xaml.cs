@@ -41,7 +41,9 @@ namespace ScribeSharp
         private string filepath;
         private int index = 0;
         System.Drawing.Image[] image;
-        FtpClient client = new FtpClient("thelastprodigy.site", "ScribeSharp@thelastprodigy.site", "CSCI4600");
+        private string classID;
+        string root = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+
         private sftpConnect upload = new sftpConnect();
         bool open = false;
         private string nondeleted = "";
@@ -62,12 +64,13 @@ namespace ScribeSharp
             chatroom.Text = RenderClassIDMessages();
             if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
-                //addPresentation.Visibility = Visibility.Hidden;
+                addPresentation.Visibility = Visibility.Hidden;
 
                 
             } else if (mainWindow.Users.IsTeacher())
             {
-
+                save.Visibility = Visibility.Hidden;
+                grab.Visibility = Visibility.Hidden;
             }
             buttonPrevious.Visibility = Visibility.Hidden;
             buttonNext.Visibility = Visibility.Hidden;
@@ -108,10 +111,18 @@ namespace ScribeSharp
                 MainWindow newMain = new MainWindow();
                 newMain.Show();
                 main.Close();
+                if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(root).FullName).FullName).FullName + @"\resources\currentPowerpoint.pptx"))
+                {
+                    File.Delete(Directory.GetParent(Directory.GetParent(Directory.GetParent(root).FullName).FullName).FullName + @"\resources\currentPowerpoint.pptx");
+                }
             }
             //template on how to return from page to window
         }
 
+        public void storeClassID(string joinCode)
+        {
+            classID = joinCode;
+        }
         private void addPresentation_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -120,23 +131,25 @@ namespace ScribeSharp
 
             if (response == true)
             {
+
                 filepath = openFileDialog.FileName;
-                //upload.deleteFile(filepath);
-                upload.uploadFile(filepath);
-                //MessageBox.Show(filepath);
+                upload.uploadPPT(filepath, main.classID);
+                MessageBox.Show(filepath);
                 
+
                 if (open == false) { 
-                    pptxDoc = Presentation.Open(filepath);
+                    
                     open = true;
                 } else
                 {
                     string applogo = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
                     pptxDoc.Close();
                     
-                    pptxDoc = Presentation.Open(filepath);
+                    
                     for (int x =0; x < image.Length; x++)
                     {
                         image[x].Dispose();
+                       
                     }
                     Array.Clear(image, 0, image.Length);
 
@@ -144,17 +157,19 @@ namespace ScribeSharp
                     img.Source = new BitmapImage(new Uri(applogo));
                 }
                 
-                pptxDoc.ChartToImageConverter = new ChartToImageConverter();
-                pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
-
+               
 
 
                 index = 0;
                 string test = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
-                //if (Directory.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides")){
-                  //  DeleteDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
-                //}
-                //Directory.CreateDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+                if (Directory.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides")){
+                    DeleteDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+                }
+                pptxDoc = Presentation.Open(filepath);
+                pptxDoc.ChartToImageConverter = new ChartToImageConverter();
+                pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
+
+                Directory.CreateDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
                 string newTest = Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides\currentSlide{index}.png";
                 image = pptxDoc.RenderAsImages(Syncfusion.Drawing.ImageType.Metafile);
                 image[index].Save(newTest);
@@ -183,16 +198,17 @@ namespace ScribeSharp
                 {
                     image[index].Save(test);
                     img.Source = new BitmapImage(new Uri(test));
+                   
                 }
                 catch (System.Runtime.InteropServices.ExternalException ex)
                 {
                     img.Source = new BitmapImage(new Uri(test));
                 }
-                if (open == true && !nondeleted.Equals(""))
+                /*if (open == true && !nondeleted.Equals(""))
                 {
                     //MessageBox.Show(nondeleted);
                     File.Delete(nondeleted);
-                }
+                }*/
             }
 
         }
@@ -211,22 +227,23 @@ namespace ScribeSharp
                 {
                     image[index].Save(test);
                     img.Source = new BitmapImage(new Uri(test));
+                  
                 } catch (System.Runtime.InteropServices.ExternalException ex)
                 {
                     img.Source = new BitmapImage(new Uri(test));
                 }
-                if (open == true && !nondeleted.Equals(""))
+                /*if (open == true && !nondeleted.Equals(""))
                 {
                     //MessageBox.Show(nondeleted);
                     File.Delete(nondeleted);
-                }
+                }*/
             }
         }
 
         public void DeleteDirectory(string target_dir)
         {
             string[] files = Directory.GetFiles(target_dir);
-            string[] dirs = Directory.GetDirectories(target_dir);
+            
             
             foreach (string file in files)
             {
@@ -234,17 +251,10 @@ namespace ScribeSharp
                 try
                 {
                     File.Delete(file);
-                } catch (System.IO.IOException ex){
-                    //MessageBox.Show(file);
-                    nondeleted = file;
-                    
-                }
+                } catch (Exception ex) { }
+              
                 
-            }
-
-            foreach (string dir in dirs)
-            {
-                DeleteDirectory(dir);
+                
             }
 
             
@@ -257,12 +267,62 @@ namespace ScribeSharp
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            string testA = Directory.GetParent(Directory.GetParent(Directory.GetParent(root).FullName).FullName).FullName + @$"\resources\currentPowerpoint.pptx";
+            SaveFileDialog SaveFileDialog1 = new SaveFileDialog();
+            SaveFileDialog1.DefaultExt = "pptx";
+            SaveFileDialog1.Filter = "pptx files (*.pptx)|*.pptx|All files (*.*)|*.*";
+            SaveFileDialog1.ShowDialog();
+            upload.readFile(SaveFileDialog1.FileName, classID,testA);
         }
 
         private void grabPresentation_Click(object sender, RoutedEventArgs e)
         {
+            
+            string testA = Directory.GetParent(Directory.GetParent(Directory.GetParent(root).FullName).FullName).FullName + @$"\resources\currentPowerpoint.pptx";
+            //upload.uploadPPT(filepath, main.classID);
+            upload.readFile(testA, classID);
+            if (open == false)
+            {
+                
+                
+                open = true;
+            }
+            else
+            {
+               
+                pptxDoc.Close();
 
+
+                for (int x = 0; x < image.Length; x++)
+                {
+                    image[x].Dispose();
+
+                }
+                Array.Clear(image, 0, image.Length);
+            }
+
+
+
+
+            index = 0;
+            string test = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+            if (Directory.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides"))
+            {
+                DeleteDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+            }
+            pptxDoc = Presentation.Open(testA);
+            pptxDoc.ChartToImageConverter = new ChartToImageConverter();
+            pptxDoc.ChartToImageConverter.ScalingMode = Syncfusion.OfficeChart.ScalingMode.Best;
+
+            Directory.CreateDirectory(Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides");
+            string newTest = Directory.GetParent(Directory.GetParent(Directory.GetParent(test).FullName).FullName).FullName + @$"\resources\slides\currentSlide{index}.png";
+            image = pptxDoc.RenderAsImages(Syncfusion.Drawing.ImageType.Metafile);
+            image[index].Save(newTest);
+            img.Source = new BitmapImage(new Uri(newTest));
+
+            buttonPrevious.Visibility = Visibility.Visible;
+            buttonNext.Visibility = Visibility.Visible;
         }
 
         private void Menu_Calculator_Click(object sender, RoutedEventArgs e)

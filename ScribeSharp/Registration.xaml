@@ -24,7 +24,7 @@
         <Grid Grid.Column="1" Grid.Row="1" Height="500" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center">
 
             <Rectangle Fill="Bisque" MinHeight="500" Height="500" MinWidth="500" Width="500" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Image HorizontalAlignment="Center" Height="100" Margin="0,0,0,0" VerticalAlignment="Top" Width="100" Source="resources/ScribeSharpLogo.png">
+            <Image x:Name="appLogo" HorizontalAlignment="Center" Height="100" Margin="0,0,0,0" VerticalAlignment="Top" Width="100" Source="resources/ScribeSharpLogo.png">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -66,9 +66,11 @@
             <TextBox Height="23" HorizontalAlignment="Center" Margin="170,40,0,0" Name="Text_Box_Email" VerticalAlignment="Center" Width="180" />
             <PasswordBox Height="23" HorizontalAlignment="Center" Margin="170,120,0,0" Name="Password_Box" VerticalAlignment="Center" Width="180" />
             <PasswordBox Height="23" HorizontalAlignment="Center" Margin="170,200,0,0" Name="Password_Box_Confirm" VerticalAlignment="Center" Width="180" />
-            <Button  Margin="200,350,0,0" Content="Register" Height="25" HorizontalAlignment="Center" Name="Register" VerticalAlignment="Center" MinWidth="150" Width="150" Click="Button_Submit_Click" Background="#FF37C316"  />
-            <Button Content="Reset" Height="25" HorizontalAlignment="Center" Margin="275,280,0,0" Name="Reset_Button" VerticalAlignment="Center" MinWidth="75" Width="75" Click="Button_Reset_Click" />
-            <Button Margin="0,350,200,0" Content="Cancel" Height="25" HorizontalAlignment="Center" Name="Cancel_Button" VerticalAlignment="Center" MinWidth="150" Width="150" Click="Button_Cancel_Click" Background="#FFFA8065"  />
+            <Button  Margin="200,430,0,0" Content="Register" Height="25" HorizontalAlignment="Center" Name="Register" VerticalAlignment="Center" MinWidth="150" Width="150" Click="Button_Submit_Click" Background="#FF37C316"  />
+            <Button Content="Reset" Height="25" HorizontalAlignment="Center" Margin="275,360,0,0" Name="Reset_Button" VerticalAlignment="Center" MinWidth="75" Width="75" Click="Button_Reset_Click" />
+            <Button Margin="0,430,200,0" Content="Cancel" Height="25" HorizontalAlignment="Center" Name="Cancel_Button" VerticalAlignment="Center" MinWidth="150" Width="150" Click="Button_Cancel_Click" Background="#FFFA8065"  />
+            <RadioButton Name="studentBtn" GroupName="userRole" Content="Student" HorizontalAlignment="Left" Margin="365,383,0,0" VerticalAlignment="Top"/>
+            <RadioButton Name="teacherBtn" GroupName="userRole" Content="Teacher" HorizontalAlignment="Center" Margin="150,280,0,0" VerticalAlignment="Center"/>
 
 
         </Grid>

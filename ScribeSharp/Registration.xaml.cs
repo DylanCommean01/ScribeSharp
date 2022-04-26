@@ -3,20 +3,24 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace ScribeSharp
 {
     public partial class Registration : Window
     {
         private string _filePath = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        private string _fileRoot = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
         private Login login;
         private bool userExists;
         private MainWindow mainWindow;
+        private sftpConnect connect;
 
         public Registration()
         {
             InitializeComponent();
-            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
+            appLogo.Source = new BitmapImage(new Uri(Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\resources\ScribeSharpLogo.png"));
+
         }
         
         private void Button_Login_Click(object sender, RoutedEventArgs e)
@@ -49,6 +53,9 @@ namespace ScribeSharp
         
         private void Button_Submit_Click(object sender, RoutedEventArgs e)
         {
+            connect = new();
+            connect.readFile(Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt");
+            _filePath = Directory.GetParent(Directory.GetParent(Directory.GetParent(_filePath).FullName).FullName).FullName + @"\Data\Users.txt";
             userExists = false;
             if (Text_Box_Email.Text.Length == 0)
             {
@@ -66,14 +73,23 @@ namespace ScribeSharp
                 string firstname = Text_Box_First_Name.Text;
                 string lastname = Text_Box_Last_Name.Text;
                 string email = Text_Box_Email.Text;
-                string profession = "Student";
+                string profession = "";
                 string classID = "";
+                if (studentBtn.IsChecked == true)
+                {
+                    profession = "Student";
+                } else if (teacherBtn.IsChecked == true) {
+                    profession = "Teacher";
+                    classID = RandomString();
+                }
+                   
+                /*
                 if (email.Contains("@my.apsu.edu")) {
                     profession = "Student";
                 } else if (email.Contains("@apsu.edu")) {
                     profession = "Teacher";
                     classID = RandomString();
-                }
+                }*/
                 string password = Password_Box.Password;
                 if (Password_Box.Password.Length == 0)
                 {
@@ -117,6 +133,13 @@ namespace ScribeSharp
                             stream.Write($"{firstname} {lastname} {profession} {email} {password} {classID}\n");
                             stream.Close();
                             Error_Message.Text = "You have registered successfully.";
+                            connect = new();
+
+                            connect.uploadFile(_filePath);
+                            if (File.Exists(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt"))
+                            {
+                                File.Delete(Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileRoot).FullName).FullName).FullName + @"\Data\Users.txt");
+                            }
                             Close();
                             mainWindow = new();
                             if (profession.Equals("Student"))
@@ -128,6 +151,8 @@ namespace ScribeSharp
                                 mainWindow.Users = new Teacher(firstname, lastname, classID);
                                 mainWindow.Show();
                             }
+                            
+                            
                         }
                         catch (InvalidOperationException)
                         {
