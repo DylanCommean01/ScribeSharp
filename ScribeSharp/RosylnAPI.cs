@@ -8,12 +8,11 @@ namespace ScribeSharp
 {
     class RosylnAPI
     {
-        public void Connect() { 
+        public void Connect() {
            // Will implement later.
         }
 
         public string Compile() {
-            // Will implement later
             return "";
         }
     }

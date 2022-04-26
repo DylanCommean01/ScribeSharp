@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -84,10 +85,10 @@ namespace ScribeSharp
 
         private void Window_Closed(object sender, RoutedEventArgs e)
         {
-         //   if (Users != null && ItemIsNotDuplicateName())
-         //   {
-         //       notePad.Save();
-         //   }
+            //   if (Users != null && ItemIsNotDuplicateName())
+            //   {
+            //       notePad.Save();
+            //   }
         }
 
         private void Menu_Save_Click(object sender, RoutedEventArgs e)
@@ -403,6 +404,23 @@ namespace ScribeSharp
             sw.Close();
             File.Delete(_filePath);
             File.Move(tempFile, _filePath);
+        }
+
+        private void Button_New_Note_Click(object sender, RoutedEventArgs e)
+        {
+            notePad = new(Users, "");
+            Note = "";
+            fileName = "untitled";
+            ReOpenOnNewWindow();
+        }
+
+        private void Button_Compiler_Click(object sender, RoutedEventArgs e) 
+        {
+            string url = "https://dotnetfiddle.net/";
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "explorer.exe";
+            startInfo.Arguments = url;
+            Process.Start(startInfo);
         }
     }
 }

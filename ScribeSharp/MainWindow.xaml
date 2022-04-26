@@ -30,6 +30,7 @@
         <DockPanel  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <Menu DockPanel.Dock="Top" x:Name="menu">
                 <MenuItem Header="File">
+                    <MenuItem Header="Create New Note" Click="Button_New_Note_Click"></MenuItem>
                     <MenuItem Header="Rename" x:Name="menuRename" Click="Menu_Rename_Click" />
                     <MenuItem Header="Save" x:Name="menuItemSave" Visibility="Collapsed" Click="Menu_Save_Click"/>
                     <MenuItem Header="Save As" x:Name="menuItemSaveAs" Click="Menu_Save_As_Click"/>
@@ -45,7 +46,7 @@
                 </MenuItem>
                 <MenuItem x:Name="menuTools" Header="Tools" Visibility="Collapsed">
                     <MenuItem Header="Computer Science Tools">
-                        <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler"/>
+                        <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" Click="Button_Compiler_Click"/>
                     </MenuItem>
                     <MenuItem  Header="Mathematics Tools" >
                         <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
