@@ -1,7 +1,7 @@
 ﻿<Window x:Class="ScribeSharp.Registration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Registration" Height="1080" MinHeight="720" MinWidth="1280" Width="1920">
+        Title="Registration" WindowState="Maximized" ResizeMode="NoResize" Height="1080" MinHeight="720" MinWidth="1280" Width="1920">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="640*"/>

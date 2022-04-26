@@ -53,7 +53,7 @@ namespace ScribeSharp
                     }
                     else if (lines[3] == email && lines[4] == password && lines[2] == "Teacher")
                     {
-                        string classID = lines[6];
+                        string classID = lines[5];
                         string lastName = lines[1];
                         string firstName = lines[0];
                         User user = new Teacher(firstName, lastName, classID);

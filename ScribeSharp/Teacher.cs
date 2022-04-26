@@ -62,7 +62,7 @@ namespace ScribeSharp
 
         public override string ToString()
         {
-            return $"{LastName} {ClassID}";
+            return $"{FirstName} {LastName} {ClassID}";
         }
     }
 }

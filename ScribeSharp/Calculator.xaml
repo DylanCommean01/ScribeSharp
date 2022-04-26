@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ScribeSharp"
       mc:Ignorable="d" 
-      Height="310" Width="237" Title="Calculator">
+      Height="310" Width="237" ResizeMode="NoResize" Title="Calculator">
     <Grid Background="White" Height="270" VerticalAlignment="Top">
         <Button Content="7" HorizontalAlignment="Left" Margin="11,115,0,0" VerticalAlignment="Top" Width="46" Height="31" FontSize="18" BorderThickness="2,2,2,1" Click="Button_7_Click">
             <Button.Foreground>

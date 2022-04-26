@@ -20,9 +20,5 @@ namespace ScribeSharp
             return _notes.Remove(name);
         }
 
-        public void EditNotes(string name, string note)
-        {
-            // Will implement this later
-        }
     }
 }

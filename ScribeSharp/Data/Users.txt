@@ -1,3 +1,4 @@
 ﻿Rashaad Washington Student rwashington@my.apsu.edu password1234
 Dylan Commean Student dcommean@my.apsu.edu password123!
 Mir Hasan Teacher mhasan@apsu.edu password DGIMMDA
+James Church Teacher jchurch@apsu.edu password KYON

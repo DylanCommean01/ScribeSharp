@@ -20,7 +20,6 @@ using Syncfusion.Drawing;
 using AspDotNet.FTPHelper;
 using FluentFTP;
 using System.Net;
-
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -50,12 +49,12 @@ namespace ScribeSharp
             this.DataContext = this;
             main = mainWindow;
             client.AutoConnect();
-            if (mainWindow.user == null || mainWindow.user.IsStudent())
+            if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
                 //addPresentation.Visibility = Visibility.Hidden;
                 //buttonPrevious.Visibility = Visibility.Hidden;
                 //buttonNext.Visibility = Visibility.Hidden;
-            } else if (mainWindow.user.IsTeacher())
+            } else if (mainWindow.Users.IsTeacher())
             {
 
             }

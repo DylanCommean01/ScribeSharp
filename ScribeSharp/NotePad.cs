@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Windows;
 
 namespace ScribeSharp
 {
@@ -29,10 +30,10 @@ namespace ScribeSharp
                 stream.WriteLine(fileName);
                 stream.WriteLine(Note.Replace("\n", "˥"));
                 stream.WriteLine(CharacterCount);
-                
-
                 stream.Close();
+
             }
+
             catch (InvalidOperationException)
             {
                 Trace.WriteLine("WARNING: File exists but is read-only.");
@@ -50,6 +51,7 @@ namespace ScribeSharp
                 Trace.WriteLine("WARNING: Something went terribly wrong...");
                 Trace.WriteLine(e);
             }
+
         }
 
     }

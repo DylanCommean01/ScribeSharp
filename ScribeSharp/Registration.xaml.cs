@@ -117,10 +117,17 @@ namespace ScribeSharp
                             stream.Write($"{firstname} {lastname} {profession} {email} {password} {classID}\n");
                             stream.Close();
                             Error_Message.Text = "You have registered successfully.";
-                            this.Close();
+                            Close();
                             mainWindow = new();
-                            mainWindow.Users = new Student(firstname, lastname);
-                            mainWindow.Show();
+                            if (profession.Equals("Student"))
+                            {
+                                mainWindow.Users = new Student(firstname, lastname);
+                                mainWindow.Show();
+                            }
+                            else if(profession.Equals("Teacher")) {
+                                mainWindow.Users = new Teacher(firstname, lastname, classID);
+                                mainWindow.Show();
+                            }
                         }
                         catch (InvalidOperationException)
                         {

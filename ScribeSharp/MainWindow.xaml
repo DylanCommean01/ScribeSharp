@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ScribeSharp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" MinHeight="720" MinWidth="1280">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" ResizeMode="NoResize" MinHeight="720" MinWidth="1280">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -31,36 +31,78 @@
             <Menu DockPanel.Dock="Top" x:Name="menu">
                 <MenuItem Header="File">
                     <MenuItem Header="Rename" x:Name="menuRename" Click="Menu_Rename_Click" />
-                    <MenuItem Header="Save" x:Name="menuItemSave" Click="Menu_Save_Click"/>
+                    <MenuItem Header="Save" x:Name="menuItemSave" Visibility="Collapsed" Click="Menu_Save_Click"/>
                     <MenuItem Header="Save As" x:Name="menuItemSaveAs" Click="Menu_Save_As_Click"/>
                     <MenuItem Header="About" x:Name="menuItemAbout" Click="Menu_About_Click"/>
                     <Separator/>
                     <MenuItem Header="Exit" x:Name="menuItemExit" Click="Menu_Exit_Click"/>
                 </MenuItem>
                 <MenuItem Header="Profile">
-                    <MenuItem Header="Login" Click="Button_Sign_In_Click"/>
-                    <MenuItem Header="Register" Click="Button_Register_Click"/>
+                    <MenuItem x:Name="menuItemLogin" Header="Login" Click="Button_Sign_In_Click"/>
+                    <MenuItem x:Name="menuItemRegister" Header="Register" Click="Button_Register_Click"/>
                     <MenuItem x:Name="menuItemUserProfile" Header="User Profile" Click="User_Profile_Click"/>
-                    <MenuItem Header="Logout" Click="Button_Logout_Click" />
+                    <MenuItem x:Name="menuItemLogout" Header="Logout" Visibility="Collapsed" Click="Button_Logout_Click" />
                 </MenuItem>
-                <MenuItem Header="Tools">
-                    <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools">
+                <MenuItem x:Name="menuTools" Header="Tools" Visibility="Collapsed">
+                    <MenuItem Header="Computer Science Tools">
                         <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler"/>
                     </MenuItem>
-                    <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
+                    <MenuItem  Header="Mathematics Tools" >
                         <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Classroom">
-                    <MenuItem x:Name="MenuItemJoinClass" Header="Join Class"/>
-                    <MenuItem x:Name="MenuItemLeaveClass" Header="Leave Class"/>
-                    <MenuItem x:Name="MenuItemStartClass" Header="Start Class" Click="Menu_Start_Class"/>
-                    <MenuItem x:Name="MenuItemEndClass" Header="End Class"/>
+                <MenuItem Header="Classroom" x:Name="menuItemClassroom" Visibility="Collapsed">
+                    <MenuItem x:Name="MenuItemJoinClass" Visibility="Collapsed" Header="Join Class"/>
+                    <MenuItem x:Name="MenuItemLeaveClass" Visibility="Collapsed" Header="Leave Class" />
+                    <MenuItem x:Name="MenuItemStartClass" Visibility="Collapsed" Header="Start Class" Click="Menu_Start_Class" />
+                    <MenuItem x:Name="MenuItemEndClass" Visibility="Collapsed" Header="End Class" />
+                </MenuItem>
+                    <MenuItem Header="NoteBook" x:Name="noteBookHeader" Visibility="Collapsed">
+                    <MenuItem Header="" x:Name="noteBooksOne" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksTwo" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksThree" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksFour" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksFive" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksSix" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksSeven" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksEight" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksNine" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="" x:Name="noteBooksTen" Visibility="Collapsed">
+                        <MenuItem Header="Open" Click="Button_Open_NoteBook_Click"></MenuItem>
+                        <MenuItem Header="Delete" Click="Button_Delete_NoteBook_Click"></MenuItem>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>
 
-        <TextBox x:Name="Notes" Grid.Row="1" Text="String str = &quot;Hello Student&quot;;&#xA;for(int i = 0; i &lt; 10; i++) {&#xA;&#x9;str += &quot; &quot; + i + &quot; &quot;;  &#xA;}&#xA;System.out.printLn(str);" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab ="True"  TextChanged="Notes_TextChanged" Padding="100" Margin="250,80,250,80"/>
+        <TextBox x:Name="Notes" Grid.Row="1" Text="" FontSize="12" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" AcceptsTab ="True"  TextChanged="Notes_TextChanged" Padding="100" Margin="250,80,250,80"/>
         <TextBlock x:Name="noteNameBlock" Visibility="Visible" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="250,40,250,40" Text="untitled" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="24"/>
         <TextBox x:Name="noteNameBox" Visibility="Hidden" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="250,40,250,40" Text="untitled" HorizontalAlignment="Left"  VerticalAlignment="Top" KeyDown="On_Enter_Handler" FontSize="24"/>
     </Grid>
