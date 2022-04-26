@@ -232,7 +232,6 @@ namespace ScribeSharp
             menuItemRegister.Visibility = Visibility.Collapsed;
             menuItemLogout.Visibility = Visibility.Visible;
             MenuItemJoinClass.Visibility = Visibility.Visible;
-            MenuItemLeaveClass.Visibility = Visibility.Visible;
         }
         private void ShowFunctionalityForTeacher()
         {
@@ -240,7 +239,6 @@ namespace ScribeSharp
             menuTools.Visibility = Visibility.Visible;
             noteBookHeader.Visibility = Visibility.Visible;
             menuItemClassroom.Visibility = Visibility.Visible;
-            MenuItemEndClass.Visibility = Visibility.Visible;
             MenuItemStartClass.Visibility = Visibility.Visible;
             menuItemLogin.Visibility = Visibility.Collapsed;
             menuItemRegister.Visibility = Visibility.Collapsed;

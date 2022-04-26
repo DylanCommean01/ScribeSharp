@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using Path = System.IO.Path;
+using System.Diagnostics;
 
 namespace ScribeSharp
 {
@@ -35,6 +36,8 @@ namespace ScribeSharp
     public partial class ClassroomPage : Page
     {
         private IPresentation pptxDoc;
+        private string _fileMessages = System.IO.Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory);
+        private Teacher teachers;
         private string filepath;
         private int index = 0;
         System.Drawing.Image[] image;
@@ -51,9 +54,12 @@ namespace ScribeSharp
         public ClassroomPage(MainWindow mainWindow)
         {
             InitializeComponent();
+            _fileMessages = Directory.GetParent(Directory.GetParent(Directory.GetParent(_fileMessages).FullName).FullName).FullName + @"\Data\Messages.txt";
             this.DataContext = this;
             main = mainWindow;
+            teachers = (Teacher)main.Users;
             client.AutoConnect();
+            chatroom.Text = RenderClassIDMessages();
             if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
                 //addPresentation.Visibility = Visibility.Hidden;
@@ -66,7 +72,34 @@ namespace ScribeSharp
             buttonPrevious.Visibility = Visibility.Hidden;
             buttonNext.Visibility = Visibility.Hidden;
         }
-        
+
+        private string RenderClassIDMessages()
+        {
+            using StreamReader sr = new(_fileMessages);
+            string messages = "";
+            string line = sr.ReadLine();
+            while (line != null) {
+                if (line.Equals("DGIMMDA"))
+                {
+                    string name = sr.ReadLine();
+                    string message = sr.ReadLine();
+                    messages += $"{name}: {message}\n";
+                }
+                line = sr.ReadLine();
+            }
+            return messages;
+        }
+
+        public void Button_Submit_Message_Click(object sender, RoutedEventArgs e)
+        {
+            using StreamWriter sw = new(_fileMessages, true);
+            sw.WriteLine(teachers.ClassID);
+            sw.WriteLine($"{teachers.FirstName.ElementAt(0)}. {teachers.LastName}");
+            sw.WriteLine(chatBox.Text);
+            sw.Close();
+            chatroom.Text = RenderClassIDMessages();
+            chatBox.Text = "";
+        }
 
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
@@ -234,8 +267,19 @@ namespace ScribeSharp
 
         private void Menu_Calculator_Click(object sender, RoutedEventArgs e)
         {
-
+            Calculator calc = new();
+            calc.Show();
         }
+
+        private void CSharp_Compiler_Click(object sender, RoutedEventArgs e) 
+        {
+            string url = "https://dotnetfiddle.net/";
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "explorer.exe";
+            startInfo.Arguments = url;
+            Process.Start(startInfo);
+        }
+
     }
 }
 

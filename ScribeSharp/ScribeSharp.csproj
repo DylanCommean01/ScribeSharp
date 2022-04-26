@@ -28,6 +28,7 @@
 
   <ItemGroup>
     <Folder Include="resources\slides\" />
+    <Folder Include="resources\slides\" />
   </ItemGroup>
 
 </Project>

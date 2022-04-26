@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ScribeSharp"
       mc:Ignorable="d" 
-
+      MaxHeight="1080" MaxWidth="1920"
       Title="Page1">
 
     <Grid Background="White">
@@ -32,7 +32,7 @@
                 <MenuItem Header="Profile"/>
                 <MenuItem Header="Tools">
                     <MenuItem x:Name="MenuItemCompSciTools" Header="Computer Science Tools">
-                        <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler"/>
+                        <MenuItem x:Name="MenuItemCSharpComplier" Header="CSharp Compiler" Click="CSharp_Compiler_Click"/>
                     </MenuItem>
                     <MenuItem x:Name="menuItemMathTools" Header="Mathematics Tools" FontSize="12">
                         <MenuItem x:Name="MenuItemCalculator" Header="Calculator" Click="Menu_Calculator_Click"/>
@@ -40,7 +40,6 @@
                 </MenuItem>
                 <MenuItem Header="Classroom">
                     <MenuItem Header="Leave Class" Click="buttonBack_Click"/>
-                    <MenuItem Header="Chat" Click="chat_Click"/>
                     <MenuItem Header="Grab Current Presentation" Click="grabPresentation_Click"/>
                     <MenuItem Header="Save Presentation" Click="save_Click"/>
                 </MenuItem>
@@ -48,10 +47,12 @@
 
             </Menu>
         </DockPanel>
-        <Button x:Name="buttonBack" Click="buttonBack_Click" Grid.Column="2" Content="Back" HorizontalAlignment="Right" Margin="640,129,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="buttonBack" Click="buttonBack_Click" Grid.Column="2" Content="Back" HorizontalAlignment="Right" Margin="0,2,10,0" Grid.Row="1" VerticalAlignment="Top" Width="36"/>
         <MediaElement Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="220,242,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
         <Image Name="img" Grid.Row="1" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,40,5,0" Height="711" Width="1264"/>
-
+        <TextBlock Background="White" x:Name="chatroom" FontSize="24"   Margin="43,116,120,168" Padding="1" Grid.Column="2" Grid.Row="1" Text="Entering Chatroom..." MaxHeight="500" TextWrapping="Wrap"></TextBlock>
+        <TextBox x:Name="chatBox" Margin="43,610,228,96" Grid.Column="2" Grid.Row="1" Text="" VerticalContentAlignment="Center" FontSize="24" FontWeight="Normal" MaxHeight="42"></TextBox>
+        <Button x:Name="chatButtonSubmit" FontWeight="ExtraBold" MaxHeight="42" Click="Button_Submit_Message_Click" Content="Send Message" Grid.Column="2" Margin="445,610,120,96" Grid.Row="1"/>
         <Button x:Name="addPresentation" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Add Presentation" Click="addPresentation_Click" Height="30" Width="150" Margin="5,2,0,0" />
         <Button x:Name="buttonPrevious"  HorizontalAlignment="Right" Content="Previous Slide" Grid.Column="1"   Grid.Row="1" VerticalAlignment="Top" Click="previousSlide_Click" Height="30" Width="112"  FontSize="12" Margin="0,2,125,0"/>
         <Button x:Name="buttonNext" HorizontalAlignment="Right" Grid.Column="1" Content="Next Slide" Grid.Row="1" VerticalAlignment="Top" Click="nextSlide_Click" Height="30" Width="111" FontSize="12" Margin="0,2,0,0"/>
