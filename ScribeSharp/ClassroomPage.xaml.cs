@@ -60,7 +60,6 @@ namespace ScribeSharp
             this.DataContext = this;
             main = mainWindow;
             teachers = (Teacher)main.Users;
-            client.AutoConnect();
             chatroom.Text = RenderClassIDMessages();
             if (mainWindow.Users == null || mainWindow.Users.IsStudent())
             {
