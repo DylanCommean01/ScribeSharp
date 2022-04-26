@@ -142,12 +142,12 @@ namespace ScribeSharp
 
         private void Menu_Start_Class(object sender, RoutedEventArgs e)
         {
-            if (Users != null && Users.IsTeacher())
-            {
+            //if (Users != null && Users.IsTeacher())
+            //{
                 ClassroomPage classroom_page = new ClassroomPage(this);
                 this.Content = classroom_page;
                 //template on how to open page
-            }
+            //}
 
         }
 

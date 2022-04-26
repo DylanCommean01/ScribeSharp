@@ -1,4 +1,5 @@
 ﻿using AspDotNet.FTPHelper;
+using FluentFTP;
 using Renci.SshNet;
 using System;
 using System.Collections.Generic;
@@ -13,69 +14,49 @@ namespace ScribeSharp
     class sftpConnect
 
     {
-        private System.Drawing.Image upload;
-        public sftpConnect(System.Drawing.Image image)
+        public string readFile(string filepath)
         {
-            upload = image;
-            backgroundWorker_DoWorkAsync();
-        }
-        public sftpConnect(String messages)
-        {
-            //Pass in strings to upload to database
-        }
-
-        //Define a struct to store login
-        struct FtpSetting
-        {
-            public string Server { get; set; }
-            public string Username { get; set; }
-            public string Password { get; set; }
-            public string FileName { get; set; }
-            public string FullName { get; set; }
-        }
-
-        FtpSetting _inputParameter;
-
-        private async Task backgroundWorker_DoWorkAsync()
-        {
-            Console.WriteLine("test Console");
-            //string fileName = ((FtpSetting)e.Argument).FileName;
-            //string fullName = ((FtpSetting)e.Argument).FullName;
-            string userName = "ScribeSharp@thelastprodigy.site";
-            string password = "CSCI4600";
-            string server = "ftp://thelastprodigy.site";
-            FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(server);
-            ftpRequest.Credentials = new NetworkCredential(userName, password);
-            ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
-            await using FileStream fileStream = File.Open(@$"\\Mac\Home\Desktop\Spring2022\Hasan4600\Scribe.png", FileMode.Open, FileAccess.Read);
-            await using Stream requestStream = ftpRequest.GetRequestStream();
-            await fileStream.CopyToAsync(requestStream);
-            using FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-
-            /*FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-            ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
-            FtpWebResponse response = (FtpWebResponse)ftpRequest.GetResponse();
-            StreamReader streamReader = new StreamReader(response.GetResponseStream());
-
-            List<string> directories = new List<string>();
-
-            string line = streamReader.ReadLine();
-            while (!string.IsNullOrEmpty(line))
+            using (FtpClient ftp = CreateFtpClient())
             {
-                var lineArr = line.Split('/');
-                line = lineArr[lineArr.Count() - 1];
-                directories.Add(line);
-                line = streamReader.ReadLine();
+                ftp.DownloadFile(filepath, Path.GetFileName(filepath));
+                string fs = File.ReadAllText(filepath);
+                return fs;
             }
-
-            streamReader.Close();
-            foreach (var author in directories)
-            {
-                Console.WriteLine(author);
-            }*/
-
         }
 
-   
+        public void deleteFile(string filepath)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                ftp.DeleteFile(Path.GetFileName(filepath));
+
+            }
+        }
+
+
+        public void uploadFile(string filepath)
+        {
+            using (FtpClient ftp = CreateFtpClient())
+            {
+                if (!ftp.FileExists(Path.GetFileName(filepath)))
+                {
+                    using (FileStream fs = File.OpenRead(filepath))
+                    {
+                        ftp.Upload(fs, Path.GetFileName(filepath));
+                    }
+                }
+                else
+                {
+                    deleteFile(filepath);
+                    uploadFile(filepath);
+                }
+            }
+        }
+
+        
+        private FtpClient CreateFtpClient()
+        {
+            return new FtpClient("ftp://e129250-ftp.services.easyname.eu", new System.Net.NetworkCredential { UserName = "196693ftp2", Password = ".dd4erlqtmi4" });
+        }
     }
 }
